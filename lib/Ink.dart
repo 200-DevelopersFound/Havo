@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:learning_digital_ink_recognition/learning_digital_ink_recognition.dart';
 import 'package:learning_digital_ink_recognition_example/painter.dart';
 import 'package:learning_input_image/learning_input_image.dart';
@@ -20,7 +21,12 @@ class _DigitalInkRecognitionPage2State
 
   double get _width => MediaQuery.of(context).size.width;
   double _height = 480;
-
+  final _controller = CircleColorPickerController(
+    initialColor: Colors.blue,
+  );
+  final _bgController = CircleColorPickerController(
+    initialColor: Colors.blue,
+  );
   @override
   void initState() {
     _recognition = DigitalInkRecognition(model: _model);
@@ -80,6 +86,13 @@ class _DigitalInkRecognitionPage2State
     }
   }
 
+  Future<void> _changePenColor(color) async {
+    state.changePenColor(color);
+  }
+  Future<void> _changeBgColor(color) async {
+    state.changeBgColor(color);
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -99,9 +112,12 @@ class _DigitalInkRecognitionPage2State
                   onScaleEnd: (details) async => await _actionUp(),
                   child: Consumer<DigitalInkRecognition2State>(
                     builder: (_, state, __) => CustomPaint(
-                      painter: DigitalInkPainter(writings: state.writings),
+                      painter: DigitalInkPainter(
+                          writings: state.writings,
+                          strokeColor: state.penColor,
+                          background: state.bgColor),
                       child: Container(
-                        width:  MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,
                       ),
                     ),
@@ -111,33 +127,30 @@ class _DigitalInkRecognitionPage2State
             ),
             Positioned(
               top: 10,
-              right:10,
-              child: 
-               GestureDetector(
+              right: 10,
+              child: GestureDetector(
                 onTap: _startRecognition,
                 child: CircleAvatar(
-                  child: Icon(
-                    Icons.play_arrow
-                  ),backgroundColor: Colors.amberAccent,
+                  child: Icon(Icons.play_arrow),
+                  backgroundColor: Colors.amberAccent,
                 ),
               ),
             ),
             Positioned(
               top: 70,
-              right:10,
-                child: GestureDetector(
+              right: 10,
+              child: GestureDetector(
                 onTap: _reset,
                 child: CircleAvatar(
-                  child: Icon(
-                    Icons.refresh
-                  ),backgroundColor: Colors.amberAccent,
+                  child: Icon(Icons.refresh),
+                  backgroundColor: Colors.amberAccent,
                 ),
               ),
             ),
-      
             Positioned(
               bottom: 10,
-              child: Consumer<DigitalInkRecognition2State>(builder: (_, state, __) {
+              child: Consumer<DigitalInkRecognition2State>(
+                  builder: (_, state, __) {
                 if (state.isNotProcessing && state.isNotEmpty) {
                   return Center(
                     child: Container(
@@ -145,13 +158,11 @@ class _DigitalInkRecognitionPage2State
                       child: Text(
                         state.toCompleteString(),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                        color: Colors.white),
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   );
-                }               
+                }
                 if (state.isProcessing) {
                   return Center(
                     child: Container(
@@ -165,6 +176,25 @@ class _DigitalInkRecognitionPage2State
                 return Container();
               }),
             ),
+            Positioned(
+              left: 10,
+              child: CircleColorPicker(
+                controller: _controller,
+                onChanged: (color) {
+                 _changePenColor(color);
+                },
+              ),
+            ),
+            Positioned(
+              left: 10,
+              bottom: 20,
+              child: CircleColorPicker(
+                controller: _bgController,
+                onChanged: (color) {
+                   _changeBgColor(color);
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -176,13 +206,16 @@ class DigitalInkRecognition2State extends ChangeNotifier {
   List<List<Offset>> _writings = [];
   List<RecognitionCandidate> _data = [];
   bool isProcessing = false;
+  Color penColor = Colors.green;
+  Color bgColor = Colors.white;
 
   List<List<Offset>> get writings => _writings;
   List<RecognitionCandidate> get data => _data;
   bool get isNotProcessing => !isProcessing;
   bool get isEmpty => _data.isEmpty;
   bool get isNotEmpty => _data.isNotEmpty;
-
+  Color get getPenColor => penColor;
+ Color get getBgColor => bgColor;
   List<Offset> _writing = [];
 
   void reset() {
@@ -215,6 +248,17 @@ class DigitalInkRecognition2State extends ChangeNotifier {
 
   void stopProcessing() {
     isProcessing = false;
+    notifyListeners();
+  }
+
+  void changePenColor(c) {
+    penColor = c;
+    notifyListeners();
+  }
+  void changeBgColor(c) {
+    bgColor = c;
+    print('check:' + c.toString());
+
     notifyListeners();
   }
 

@@ -5,18 +5,20 @@ class DigitalInkPainter extends CustomPainter {
   final List<List<Offset>> writings;
   final double strokeWidth;
   final Color strokeColor;
+  final Color background;
 
   DigitalInkPainter({
     this.writings = const [],
     this.strokeWidth = 2.0,
     this.strokeColor = Colors.black87,
+    this.background = Colors.black87,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
     canvas.clipRect(rect);
-    canvas.drawColor(Colors.black87, BlendMode.multiply);
+    canvas.drawColor(background, BlendMode.multiply);
 
     final paint = Paint()
       ..color = strokeColor
