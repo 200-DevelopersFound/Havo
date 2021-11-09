@@ -21,6 +21,7 @@ class _DigitalInkRecognitionPage2State
 
   double get _width => MediaQuery.of(context).size.width;
   double _height = 480;
+  int hidePicker = 0;
   final _controller = CircleColorPickerController(
     initialColor: Colors.blue,
   );
@@ -89,6 +90,7 @@ class _DigitalInkRecognitionPage2State
   Future<void> _changePenColor(color) async {
     state.changePenColor(color);
   }
+
   Future<void> _changeBgColor(color) async {
     state.changeBgColor(color);
   }
@@ -148,6 +150,44 @@ class _DigitalInkRecognitionPage2State
               ),
             ),
             Positioned(
+              top: 130,
+              right: 10,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (hidePicker == 1)
+                      hidePicker = 0;
+                    else
+                      hidePicker = 1;
+                  });
+                },
+                child: CircleAvatar(
+                  child: Icon(Icons.border_color),
+                  backgroundColor:
+                      hidePicker != 1 ? Colors.amberAccent : Colors.red,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 190,
+              right: 10,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (hidePicker == 2)
+                      hidePicker = 0;
+                    else
+                      hidePicker = 2;
+                  });
+                },
+                child: CircleAvatar(
+                  child: Icon(Icons.gradient),
+                  backgroundColor:
+                      hidePicker != 2 ? Colors.amberAccent : Colors.red,
+                ),
+              ),
+            ),
+            Positioned(
               bottom: 10,
               child: Consumer<DigitalInkRecognition2State>(
                   builder: (_, state, __) {
@@ -176,23 +216,32 @@ class _DigitalInkRecognitionPage2State
                 return Container();
               }),
             ),
-            Positioned(
-              left: 10,
-              child: CircleColorPicker(
-                controller: _controller,
-                onChanged: (color) {
-                 _changePenColor(color);
-                },
+            Visibility(
+              visible: hidePicker == 1,
+              child: Align(
+                alignment: Alignment.center,
+                child: CircleColorPicker(
+                  controller: _controller,
+                  onChanged: (color) {
+                    setState(() {
+                      _changePenColor(color);
+                    });
+                  },
+                ),
               ),
             ),
-            Positioned(
-              left: 10,
-              bottom: 20,
-              child: CircleColorPicker(
-                controller: _bgController,
-                onChanged: (color) {
-                   _changeBgColor(color);
-                },
+            Visibility(
+              visible: hidePicker == 2,
+              child: Align(
+                alignment: Alignment.center,
+                child: CircleColorPicker(
+                  controller: _bgController,
+                  onChanged: (color) {
+                    setState(() {
+                      _changeBgColor(color);
+                    });
+                  },
+                ),
               ),
             ),
           ],
@@ -215,7 +264,7 @@ class DigitalInkRecognition2State extends ChangeNotifier {
   bool get isEmpty => _data.isEmpty;
   bool get isNotEmpty => _data.isNotEmpty;
   Color get getPenColor => penColor;
- Color get getBgColor => bgColor;
+  Color get getBgColor => bgColor;
   List<Offset> _writing = [];
 
   void reset() {
@@ -255,6 +304,7 @@ class DigitalInkRecognition2State extends ChangeNotifier {
     penColor = c;
     notifyListeners();
   }
+
   void changeBgColor(c) {
     bgColor = c;
     print('check:' + c.toString());
