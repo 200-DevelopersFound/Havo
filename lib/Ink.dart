@@ -5,6 +5,7 @@ import 'package:learning_digital_ink_recognition_example/painter.dart';
 import 'package:learning_input_image/learning_input_image.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class DigitalInkRecognitionPage2 extends StatefulWidget {
   @override
@@ -28,6 +29,8 @@ class _DigitalInkRecognitionPage2State
   final _bgController = CircleColorPickerController(
     initialColor: Colors.blue,
   );
+  FlutterTts flutterTts = FlutterTts();
+
   @override
   void initState() {
     _recognition = DigitalInkRecognition(model: _model);
@@ -38,6 +41,16 @@ class _DigitalInkRecognitionPage2State
   void dispose() {
     _recognition.dispose();
     super.dispose();
+  }
+
+  void _speak(text) async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setVolume(1.0);
+    await flutterTts.setPitch(1.0);
+
+    await flutterTts.speak(text);
+    // if (result == 1) setState(() => ttsState = TtsState.playing);
   }
 
   // need to call start() at the first time before painting the ink
@@ -83,7 +96,9 @@ class _DigitalInkRecognitionPage2State
       // always check the availability of model before being used for recognition
       await _checkModel();
       state.data = await _recognition.process();
+      print("data" + state.data.toString());
       state.stopProcessing();
+      _speak(state.data[0].text);
     }
   }
 
@@ -255,8 +270,8 @@ class DigitalInkRecognition2State extends ChangeNotifier {
   List<List<Offset>> _writings = [];
   List<RecognitionCandidate> _data = [];
   bool isProcessing = false;
-  Color penColor = Colors.green;
-  Color bgColor = Colors.white;
+  Color penColor = Colors.black;
+  Color bgColor = Colors.yellow;
 
   List<List<Offset>> get writings => _writings;
   List<RecognitionCandidate> get data => _data;
@@ -307,8 +322,6 @@ class DigitalInkRecognition2State extends ChangeNotifier {
 
   void changeBgColor(c) {
     bgColor = c;
-    print('check:' + c.toString());
-
     notifyListeners();
   }
 
@@ -323,6 +336,7 @@ class DigitalInkRecognition2State extends ChangeNotifier {
   }
 
   String toCompleteString() {
-    return isNotEmpty ? _data.map((c) => c.text).toList().join(', ') : '';
+    return isNotEmpty ? _data[0].text : '';
+    // return isNotEmpty ? _data.map((c) => c.text).toList().join(', ') : '';
   }
 }

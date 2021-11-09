@@ -1,6 +1,6 @@
 name: learning_digital_ink_recognition_example
 description: Demonstrates how to use the learning_digital_ink_recognition plugin.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -13,6 +13,7 @@ dependencies:
   learning_input_image: ^0.0.5
   learning_digital_ink_recognition: ^0.0.1
   flutter_circle_color_picker: ^0.3.0
+  flutter_tts: ^3.2.2
 
 dev_dependencies:
   flutter_test:
