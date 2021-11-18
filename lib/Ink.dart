@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:learning_digital_ink_recognition/learning_digital_ink_recognition.dart';
 import 'package:learning_digital_ink_recognition_example/painter.dart';
-import 'package:learning_input_image/learning_input_image.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 
 class DigitalInkRecognitionPage2 extends StatefulWidget {
   @override

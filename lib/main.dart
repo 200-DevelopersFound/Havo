@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learning_digital_ink_recognition/learning_digital_ink_recognition.dart';
-import 'package:learning_input_image/learning_input_image.dart';
 import 'package:provider/provider.dart';
 
 import 'Ink.dart';
-import 'painter.dart';
+import 'login.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,10 +20,13 @@ class MyApp extends StatelessWidget {
           headline6: TextStyle(color: Colors.white),
         ),
       ),
-      home: ChangeNotifierProvider(
-        create: (_) => DigitalInkRecognition2State(),
-        child: DigitalInkRecognitionPage2(),
-      ),
+      home: 
+      login(),
+
+      // ChangeNotifierProvider(
+      //   create: (_) => DigitalInkRecognition2State(),
+      //   child: DigitalInkRecognitionPage2(),
+      // ),
     );
   }
 }
