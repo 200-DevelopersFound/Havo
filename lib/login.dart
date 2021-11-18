@@ -23,77 +23,83 @@ class _loginState extends State<login> {
     return DefaultTabController(
       initialIndex: 0,
       length: 2,
-      child: Scaffold(
-        backgroundColor: Color(0xff121619),
-        body: SafeArea(
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Havo',
-                    style: TextStyle(fontSize: 40, color: orange),
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [darkBlack, lightBlack])),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Havo',
+                      style: TextStyle(fontSize: 40, color: orange),
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.65,
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                        color: Color(0xff1C2126),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          height: 60,
-                          child: TabBar(
-                              indicatorColor: orange,
-                              onTap: (i) {
-                                setState(() {
-                                  selected = i;
-                                });
-                              },
-                              tabs: [
-                                Tab(
-                                  child: Text(
-                                    'Sign in',
-                                    style: TextStyle(
-                                        color: selected == 0
-                                            ? orange
-                                            : Colors.white),
-                                  ),
-                                ),
-                                Tab(
-                                  child: Text(
-                                    'Sign up',
-                                    style: TextStyle(
-                                        color: selected == 1
-                                            ? orange
-                                            : Colors.white),
-                                  ),
-                                ),
-                              ]),
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            children: [SignIn(), SignUp()],
+                Container(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.65,
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      decoration: BoxDecoration(
+                          color: Color(0xff1B2127),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ],
-                    ),
-                  )),
-            ],
+                          Container(
+                            height: 60,
+                            child: TabBar(
+                                indicatorColor: orange,
+                                onTap: (i) {
+                                  setState(() {
+                                    selected = i;
+                                  });
+                                },
+                                tabs: [
+                                  Tab(
+                                    child: Text(
+                                      'Sign in',
+                                      style: TextStyle(
+                                          color: selected == 0
+                                              ? orange
+                                              : Colors.white),
+                                    ),
+                                  ),
+                                  Tab(
+                                    child: Text(
+                                      'Sign up',
+                                      style: TextStyle(
+                                          color: selected == 1
+                                              ? orange
+                                              : Colors.white),
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                          Expanded(
+                            child: TabBarView(
+                              children: [SignIn(), SignUp()],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
       ),
