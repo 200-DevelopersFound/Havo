@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:provider/provider.dart';
 
-import 'Components/BlurredCard.dart';
-import 'Ink.dart';
+import '../Components/BlurredCard.dart';
+import '../Components/Ink.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

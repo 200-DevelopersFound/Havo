@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'constants/colors.dart';
+import '../constants/colors.dart';
 
 class Saved extends StatefulWidget {
   const Saved({Key? key}) : super(key: key);

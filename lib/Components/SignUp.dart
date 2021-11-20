@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Components/CustomTextField.dart';
-import 'package:learning_digital_ink_recognition_example/Home.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
 
 import 'CustomButton.dart';
 import 'label.dart';

@@ -4,8 +4,8 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:learning_digital_ink_recognition_example/Components/SignUp.dart';
 
-import 'Components/SignIn.dart';
-import 'constants/colors.dart';
+import '../Components/SignIn.dart';
+import '../constants/colors.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
