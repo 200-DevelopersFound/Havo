@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'Ink.dart';
-import 'login.dart';
+import 'package:learning_digital_ink_recognition_example/saved.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,8 +17,8 @@ class MyApp extends StatelessWidget {
           headline6: TextStyle(color: Colors.white),
         ),
       ),
-      home: 
-      login(),
+      home: Saved(),
+      // login(),
 
       // ChangeNotifierProvider(
       //   create: (_) => DigitalInkRecognition2State(),
