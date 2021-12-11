@@ -1,18 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/Category.dart';
+import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 
-import '../constants/colors.dart';
-
-class Saved extends StatefulWidget {
-  const Saved({Key? key}) : super(key: key);
-
+class Category extends StatefulWidget {
   @override
-  _SavedState createState() => _SavedState();
+  _CategoryState createState() => _CategoryState();
 }
 
-class _SavedState extends State<Saved> {
+class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     TextEditingController searchController = new TextEditingController();
@@ -55,7 +51,7 @@ class _SavedState extends State<Saved> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Text('Saved Category',
+                      child: Text('Introduction',
                           style: TextStyle(color: Colors.white, fontSize: 23)),
                     ),
                   ),
@@ -102,35 +98,27 @@ class _SavedState extends State<Saved> {
                   child: Column(
                     children: [
                       for (var i = 0; i < 30; i++)
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Category()));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            margin: EdgeInsets.symmetric(vertical: 7),
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.02),
-                                border: Border.all(
-                                    color: Colors.white.withOpacity(0.5)),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text('Introduction',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 23)),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 10),
+                          margin: EdgeInsets.symmetric(vertical: 7),
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.02),
+                              border: Border.all(
+                                  color: Colors.white.withOpacity(0.5)),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text('Hello My Name is Yogesh',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23)),
+                              Icon(
+                                Icons.play_arrow_rounded,
+                                color: Colors.white,
+                              )
+                            ],
                           ),
                         ),
                     ],

@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
         icon: Icons.arrow_forward,
         text: 'Sign in',
         onTap: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(
+          Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) {
               return ChangeNotifierProvider(
                 create: (_) => DigitalInkRecognition2State(),

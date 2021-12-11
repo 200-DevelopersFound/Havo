@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/saved.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -83,10 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return ChangeNotifierProvider(
-                              create: (_) => DigitalInkRecognition2State(),
-                              child: DigitalInkRecognitionPage2(),
-                            );
+                            return Saved();
                           })).then((value) {
                             setState(() {});
                           });
