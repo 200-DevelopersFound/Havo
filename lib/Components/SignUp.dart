@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_digital_ink_recognition_example/Api/EmailOtp.dart';
 import 'package:learning_digital_ink_recognition_example/Components/CustomTextField.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
 
@@ -15,6 +16,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+
+  Future<String>? _futureId;
 
   @override
   Widget build(BuildContext context) {
@@ -29,44 +33,55 @@ class _SignUpState extends State<SignUp> {
         SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 5),
-                  child: label(
-                    text: 'First Name',
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.5 - 20,
-                  child: CustomTextField(controller: emailController),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(left: 5),
-                  child: label(
-                    text: 'Last Name',
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.5 - 20,
-                  child: CustomTextField(controller: emailController),
-                ),
-              ],
-            )
-          ],
+        CustomButton(
+          icon: Icons.arrow_forward,
+          text: 'Get OTP',
+          onTap: () {
+            _futureId = getOTP(emailController.text).then((value) {
+              print("here:" + value);
+              return value;
+            });
+          },
         ),
+
+        // Row(
+        //   mainAxisSize: MainAxisSize.min,
+        //   children: [
+        //     Column(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Container(
+        //           margin: EdgeInsets.only(left: 5),
+        //           child: label(
+        //             text: 'First Name',
+        //           ),
+        //         ),
+        //         Container(
+        //           width: MediaQuery.of(context).size.width * 0.5 - 20,
+        //           child: CustomTextField(controller: emailController),
+        //         ),
+        //       ],
+        //     ),
+        //     SizedBox(
+        //       width: 10,
+        //     ),
+        //     Column(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Container(
+        //           padding: EdgeInsets.only(left: 5),
+        //           child: label(
+        //             text: 'Last Name',
+        //           ),
+        //         ),
+        //         Container(
+        //           width: MediaQuery.of(context).size.width * 0.5 - 20,
+        //           child: CustomTextField(controller: emailController),
+        //         ),
+        //       ],
+        //     )
+        //   ],
+        // ),
         // CustomTextField(controller: emailController),
         SizedBox(
           height: 20,
@@ -75,7 +90,7 @@ class _SignUpState extends State<SignUp> {
           text: 'OTP',
           icon: CupertinoIcons.at_circle,
         ),
-        CustomTextField(controller: emailController),
+        CustomTextField(controller: otpController),
         SizedBox(
           height: 20,
         ),
