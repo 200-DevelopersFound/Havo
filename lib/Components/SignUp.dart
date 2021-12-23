@@ -19,6 +19,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController otpController = TextEditingController();
 
   Future<String>? _futureId;
+  Future<bool>? _futureIsVerify;
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +99,9 @@ class _SignUpState extends State<SignUp> {
           icon: Icons.arrow_forward,
           text: 'Verify',
           onTap: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+
+            // Navigator.pushReplacement(
+            //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
           },
         ),
       ],
