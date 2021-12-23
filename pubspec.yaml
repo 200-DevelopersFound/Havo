@@ -14,6 +14,7 @@ dependencies:
   learning_digital_ink_recognition: ^0.0.1
   flutter_circle_color_picker: ^0.3.0
   flutter_tts: ^3.2.2
+  cupertino_icons: ^1.0.4
 
 dev_dependencies:
   flutter_test:
