@@ -5,7 +5,7 @@ import 'package:learning_digital_ink_recognition_example/constants/api.dart';
 
 Future<String> getOTP(String email) async {
   final response = await http.post(
-    Uri.parse(api + '/email/otp'),
+    Uri.parse(api + '/email/trigger/otp'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
