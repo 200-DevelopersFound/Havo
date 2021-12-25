@@ -28,7 +28,6 @@ class _SignUpState extends State<SignUp> {
       padding: EdgeInsets.all(12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           label(
             text: 'Email',
@@ -103,8 +102,8 @@ class _SignUpState extends State<SignUp> {
             icon: Icons.arrow_forward,
             text: 'Verify',
             onTap: () {
-              emailVerify(emailController.text, otpController.text,
-                  _futureId.toString());
+              _futureIsVerify = emailVerify(emailController.text,
+                  otpController.text, _futureId.toString());
 
               // Navigator.pushReplacement(
               //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
