@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/saved.dart';
 
 import 'login.dart';
+
+CategoryApi categoryApi = CategoryApi();
 
 void main() {
   runApp(MyApp());
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
           headline6: TextStyle(color: Colors.white),
         ),
       ),
-      home: login(),
+      home: Saved(),
       // login(),
 
       // ChangeNotifierProvider(

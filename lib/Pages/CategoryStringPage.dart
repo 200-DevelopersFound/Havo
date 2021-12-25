@@ -1,19 +1,21 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/CategoryStringPage.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/main.dart';
+import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
+import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
 
-import '../constants/colors.dart';
+import 'main.dart';
 
-class Saved extends StatefulWidget {
-  const Saved({Key? key}) : super(key: key);
-
+class CategoryStringPage extends StatefulWidget {
+  final int idx;
+  CategoryStringPage(
+    this.idx,
+  );
   @override
-  _SavedState createState() => _SavedState();
+  _CategoryStringPageState createState() => _CategoryStringPageState();
 }
 
-class _SavedState extends State<Saved> {
+class _CategoryStringPageState extends State<CategoryStringPage> {
   List<Category> categoryList = [];
   @override
   void initState() {
@@ -64,7 +66,7 @@ class _SavedState extends State<Saved> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Text('Saved Category',
+                      child: Text('Introduction',
                           style: TextStyle(color: Colors.white, fontSize: 23)),
                     ),
                   ),
@@ -110,37 +112,28 @@ class _SavedState extends State<Saved> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      for (var i = 0; i < 10; i++)
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        CategoryStringPage(i)));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            margin: EdgeInsets.symmetric(vertical: 7),
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.02),
-                                border: Border.all(
-                                    color: Colors.white.withOpacity(0.5)),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(categoryList[i].title,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 23)),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
+                      for (var i = 0; i < 2; i++)
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 10),
+                          margin: EdgeInsets.symmetric(vertical: 7),
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.02),
+                              border: Border.all(
+                                  color: Colors.white.withOpacity(0.5)),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(categoryList[widget.idx].strings[i],
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23)),
+                              Icon(
+                                Icons.play_arrow_rounded,
+                                color: Colors.white,
+                              )
+                            ],
                           ),
                         ),
                     ],
