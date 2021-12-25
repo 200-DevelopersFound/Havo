@@ -43,49 +43,50 @@ class _loginState extends State<login> {
                   ),
                 ),
                 Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.65,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: Color(0xff1B2127),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40))),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 60,
-                            child: TabBar(
-                                indicatorColor: orange,
-                                labelColor: Colors.white,
-                                unselectedLabelColor: Colors.grey[600],
-                                tabs: [
-                                  Tab(
-                                    child: Text(
-                                      'Sign in',
-                                    ),
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    width: MediaQuery.of(context).size.width,
+                    // padding: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                        color: Color(0xff1B2127),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 60,
+                          child: TabBar(
+                              indicatorColor: orange,
+                              labelColor: Colors.white,
+                              unselectedLabelColor: Colors.grey[600],
+                              tabs: [
+                                Tab(
+                                  child: Text(
+                                    'Sign in',
                                   ),
-                                  Tab(
-                                    child: Text(
-                                      'Sign up',
-                                    ),
+                                ),
+                                Tab(
+                                  child: Text(
+                                    'Sign up',
                                   ),
-                                ]),
+                                ),
+                              ]),
+                        ),
+                        Expanded(
+                          child: TabBarView(
+                            children: [SignIn(), SignUp()],
                           ),
-                          Expanded(
-                            child: TabBarView(
-                              children: [SignIn(), SignUp()],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
