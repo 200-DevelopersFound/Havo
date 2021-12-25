@@ -15,7 +15,6 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-  int selected = 0;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -64,28 +63,16 @@ class _loginState extends State<login> {
                             height: 60,
                             child: TabBar(
                                 indicatorColor: orange,
-                                onTap: (i) {
-                                  setState(() {
-                                    selected = i;
-                                  });
-                                },
+                                labelColor: Colors.white,unselectedLabelColor: Colors.grey[600],
                                 tabs: [
                                   Tab(
                                     child: Text(
                                       'Sign in',
-                                      style: TextStyle(
-                                          color: selected == 0
-                                              ? orange
-                                              : Colors.white),
                                     ),
                                   ),
                                   Tab(
                                     child: Text(
                                       'Sign up',
-                                      style: TextStyle(
-                                          color: selected == 1
-                                              ? orange
-                                              : Colors.white),
                                     ),
                                   ),
                                 ]),
