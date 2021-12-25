@@ -63,7 +63,8 @@ class _loginState extends State<login> {
                             height: 60,
                             child: TabBar(
                                 indicatorColor: orange,
-                                labelColor: Colors.white,unselectedLabelColor: Colors.grey[600],
+                                labelColor: Colors.white,
+                                unselectedLabelColor: Colors.grey[600],
                                 tabs: [
                                   Tab(
                                     child: Text(
