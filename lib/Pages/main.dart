@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/saved.dart';
+import 'package:learning_digital_ink_recognition_example/tts.dart';
 
 import 'login.dart';
 
-CategoryApi categoryApi = CategoryApi();
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  CategoryApi.CategoryApiInit();
+  tts.ttsInit();
   runApp(MyApp());
 }
 
@@ -22,8 +24,9 @@ class MyApp extends StatelessWidget {
           headline6: TextStyle(color: Colors.white),
         ),
       ),
-      home: Saved(),
-      // login(),
+      home:
+          // Saved(),
+          login(),
 
       // ChangeNotifierProvider(
       //   create: (_) => DigitalInkRecognition2State(),

@@ -4,19 +4,19 @@ import 'package:learning_digital_ink_recognition_example/constants/api.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
 
 class CategoryApi {
-  late List<Category> categoryList;
-  CategoryApi() {
+  static late List<Category> categoryList;
+  static void CategoryApiInit() {
     categoryList = [];
   }
 
-  List<Category> getDummy() {
+  static List<Category> getDummy() {
     for (int i = 0; i < 10; i++)
       categoryList.add(
           Category(i.toString(), "String$i", ["String$i 1", "String$i 2"]));
     return categoryList;
   }
 
-  Future<String> getCategory(String email) async {
+  static Future<String> getCategory(String email) async {
     final response = await http.post(
       Uri.parse(api + '/email/trigger/otp'),
       headers: <String, String>{

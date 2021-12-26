@@ -21,7 +21,7 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    categoryList = categoryApi.getDummy();
+    categoryList = CategoryApi.getDummy();
   }
 
   @override

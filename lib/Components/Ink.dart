@@ -4,6 +4,7 @@ import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:learning_digital_ink_recognition/learning_digital_ink_recognition.dart';
 import 'package:learning_digital_ink_recognition_example/Utility/painter.dart';
+import 'package:learning_digital_ink_recognition_example/tts.dart';
 import 'package:provider/provider.dart';
 
 class DigitalInkRecognitionPage2 extends StatefulWidget {
@@ -28,7 +29,6 @@ class _DigitalInkRecognitionPage2State
   final _bgController = CircleColorPickerController(
     initialColor: Colors.blue,
   );
-  FlutterTts flutterTts = FlutterTts();
 
   @override
   void initState() {
@@ -40,16 +40,6 @@ class _DigitalInkRecognitionPage2State
   void dispose() {
     _recognition.dispose();
     super.dispose();
-  }
-
-  void _speak(text) async {
-    await flutterTts.setLanguage("en-US");
-    await flutterTts.setSpeechRate(1.0);
-    await flutterTts.setVolume(1.0);
-    await flutterTts.setPitch(1.0);
-
-    await flutterTts.speak(text);
-    // if (result == 1) setState(() => ttsState = TtsState.playing);
   }
 
   // need to call start() at the first time before painting the ink
@@ -97,7 +87,7 @@ class _DigitalInkRecognitionPage2State
       state.data = await _recognition.process();
       print("data" + state.data.toString());
       state.stopProcessing();
-      _speak(state.data[0].text);
+      tts.speak(state.data[0].text);
     }
   }
 

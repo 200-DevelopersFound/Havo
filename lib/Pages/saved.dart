@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/CategoryStringPage.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/main.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
@@ -19,7 +20,7 @@ class _SavedState extends State<Saved> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    categoryList = categoryApi.getDummy();
+    categoryList = CategoryApi.getDummy();
   }
 
   @override
