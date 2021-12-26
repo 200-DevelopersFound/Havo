@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final IconData icon;
+  final IconData? icon;
   final Function()? onTap;
   const CustomButton({
     Key? key,
     required this.text,
-    required this.icon,
+    this.icon,
     required this.onTap,
   }) : super(key: key);
 
@@ -32,10 +32,13 @@ class CustomButton extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
               ),
-              Icon(
-                icon,
-                size: 20,
-                color: Colors.white,
+              Visibility(
+                visible: icon != null,
+                child: Icon(
+                  icon,
+                  size: 20,
+                  color: Colors.white,
+                ),
               ),
             ],
           )),
