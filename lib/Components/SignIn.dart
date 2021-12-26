@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
 import 'package:provider/provider.dart';
 
 import 'CustomButton.dart';
@@ -56,10 +57,7 @@ class _SignInState extends State<SignIn> {
           onTap: () {
             Navigator.push(context, MaterialPageRoute(
               builder: (BuildContext context) {
-                return ChangeNotifierProvider(
-                  create: (_) => DigitalInkRecognition2State(),
-                  child: DigitalInkRecognitionPage2(),
-                );
+                return HomeScreen();
               },
             ));
           },

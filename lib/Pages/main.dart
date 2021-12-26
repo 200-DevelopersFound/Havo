@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
           headline6: TextStyle(color: Colors.white),
         ),
       ),
-      home: SavedCategoryPage(),
-      // login(),
+      home:
+          // SavedCategoryPage(),
+          login(),
 
       // ChangeNotifierProvider(
       //   create: (_) => DigitalInkRecognition2State(),
