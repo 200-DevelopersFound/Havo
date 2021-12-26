@@ -15,6 +15,7 @@ dependencies:
   flutter_circle_color_picker: ^0.3.0
   flutter_tts: ^3.2.2
   cupertino_icons: ^1.0.4
+  loading_indicator: ^3.0.2
 
 dev_dependencies:
   flutter_test:

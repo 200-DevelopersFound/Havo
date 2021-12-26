@@ -11,8 +11,10 @@ class CategoryApi {
 
   static List<Category> getDummy() {
     for (int i = 0; i < 10; i++)
-      categoryList.add(
-          Category(i.toString(), "String$i", ["String$i 1", "String$i 2"]));
+      categoryList.add(Category(i.toString(), "String$i", [
+        "See your saved message and lets you easily convert into voice$i 1",
+        "String$i 2"
+      ]));
     return categoryList;
   }
 

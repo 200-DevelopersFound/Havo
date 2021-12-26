@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/saved.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return Saved();
+                            return SavedCategoryPage();
                           })).then((value) {
                             setState(() {});
                           });

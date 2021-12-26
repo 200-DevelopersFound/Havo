@@ -7,14 +7,14 @@ import 'package:learning_digital_ink_recognition_example/model/category.dart';
 
 import '../constants/colors.dart';
 
-class Saved extends StatefulWidget {
-  const Saved({Key? key}) : super(key: key);
+class SavedCategoryPage extends StatefulWidget {
+  const SavedCategoryPage({Key? key}) : super(key: key);
 
   @override
-  _SavedState createState() => _SavedState();
+  _SavedCategoryPageState createState() => _SavedCategoryPageState();
 }
 
-class _SavedState extends State<Saved> {
+class _SavedCategoryPageState extends State<SavedCategoryPage> {
   List<Category> categoryList = [];
   @override
   void initState() {

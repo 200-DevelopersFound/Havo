@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
+import 'package:learning_digital_ink_recognition_example/Components/PlayingString.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
-
+import 'package:learning_digital_ink_recognition_example/tts.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'main.dart';
 
 class CategoryStringPage extends StatefulWidget {
@@ -17,11 +19,12 @@ class CategoryStringPage extends StatefulWidget {
 
 class _CategoryStringPageState extends State<CategoryStringPage> {
   List<Category> categoryList = [];
+  late int idx;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     categoryList = CategoryApi.getDummy();
+    idx = widget.idx;
   }
 
   @override
@@ -66,8 +69,11 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Text('Introduction',
-                          style: TextStyle(color: Colors.white, fontSize: 23)),
+                      child: Text(
+                        'Introduction',
+                        style: TextStyle(color: Colors.white, fontSize: 23),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                   Container(
@@ -113,29 +119,7 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
                   child: Column(
                     children: [
                       for (var i = 0; i < 2; i++)
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 10),
-                          margin: EdgeInsets.symmetric(vertical: 7),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.02),
-                              border: Border.all(
-                                  color: Colors.white.withOpacity(0.5)),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(categoryList[widget.idx].strings[i],
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23)),
-                              Icon(
-                                Icons.play_arrow_rounded,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                        ),
+                        PlayingString(text: categoryList[idx].strings[i]),
                     ],
                   ),
                 ),
