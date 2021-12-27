@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CreateUser.dart';
 import 'package:learning_digital_ink_recognition_example/Api/EmailOtp.dart';
 import 'package:learning_digital_ink_recognition_example/Api/EmailVerify.dart';
+import 'package:learning_digital_ink_recognition_example/Api/User.dart';
 import 'package:learning_digital_ink_recognition_example/Components/CustomTextField.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
 
@@ -23,9 +24,6 @@ class _SignUpState extends State<SignUp> {
   TextEditingController lnameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
-  Future<String>? _futureId;
-  Future<bool>? _futureIsVerify;
-  Future<String>? _futureToken;
   String id = "";
   bool IsVerify = false;
   @override
@@ -92,15 +90,22 @@ class _SignUpState extends State<SignUp> {
                   // margin: EdgeInsets.symmetric(vertical: 20),
                   child: CustomButton(
                     text: "Sign up",
-                    onTap: () {
-                      _futureToken = createUser(
-                          fnameController.text,
-                          lnameController.text,
-                          usernameController.text,
-                          emailController.text,
-                          passwordController.text);
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => HomeScreen()));
+                    onTap: () async {
+                      await createUser(
+                              fnameController.text,
+                              lnameController.text,
+                              usernameController.text,
+                              emailController.text,
+                              passwordController.text)
+                          .then((value) {
+                        if (value != "error") {
+                          User(usernameController.text, emailController.text,
+                              value);
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                        }
+                      });
                     },
                   ),
                 ),
@@ -123,11 +128,10 @@ class _SignUpState extends State<SignUp> {
                 CustomButton(
                   icon: Icons.arrow_forward,
                   text: 'Get OTP',
-                  onTap: () {
-                    _futureId = getOTP(emailController.text).then((value) {
+                  onTap: () async {
+                    await getOTP(emailController.text).then((value) {
                       print("here:" + value);
                       id = value;
-                      return value;
                     });
                   },
                 ),
@@ -145,17 +149,14 @@ class _SignUpState extends State<SignUp> {
                 CustomButton(
                   icon: Icons.arrow_forward,
                   text: 'Verify',
-                  onTap: () {
-                    setState(() {
-                      _futureIsVerify = emailVerify(emailController.text,
-                              otpController.text, id.toString())
-                          .then((value) {
-                        setState(() {
-                          IsVerify = value;
-                          print("here" + IsVerify.toString());
-                        });
-                        return value;
+                  onTap: () async {
+                    await emailVerify(emailController.text, otpController.text,
+                            id.toString())
+                        .then((value) {
+                      setState(() {
+                        IsVerify = value;
                       });
+                      return value;
                     });
 
                     // Navigator.pushReplacement(context,

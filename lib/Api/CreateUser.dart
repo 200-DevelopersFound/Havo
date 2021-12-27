@@ -23,12 +23,14 @@ Future<String> createUser(String fname, String lname, String username,
     // then parse the JSON.
     // id=""->,otp from email,email
     var x = jsonDecode(response.body);
-    print("_futureToken:" + x.toString());
-    return x['token'];
+    if (x['auth'] == true)
+      return x['token'];
+    else
+      return "error";
     // return Album.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
-    throw Exception('Failed to get OTP.');
+    return "error";
   }
 }

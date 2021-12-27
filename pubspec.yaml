@@ -16,6 +16,7 @@ dependencies:
   flutter_tts: ^3.2.2
   cupertino_icons: ^1.0.4
   loading_indicator: ^3.0.2
+  progress_loading_button: ^1.1.4
 
 dev_dependencies:
   flutter_test:
