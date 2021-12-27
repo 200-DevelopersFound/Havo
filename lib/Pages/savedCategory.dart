@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
+import 'package:learning_digital_ink_recognition_example/Components/CustomDialog.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/CategoryStringPage.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/main.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
@@ -36,7 +37,17 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomDialog(
+                    onTap: () async {
+                      // await addCategory();
+                    },
+                  );
+                });
+          },
           backgroundColor: orange,
           child: Icon(
             Icons.add,
@@ -92,7 +103,7 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                   cursorColor: Color(0xffffffff),
                   controller: searchController,
                   decoration: InputDecoration(
-                    fillColor: Color(0xff2D3337),
+                    fillColor: Color(0xff404040),
                     filled: true,
                     border: OutlineInputBorder(
                         borderSide: BorderSide.none,
@@ -115,19 +126,20 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        CategoryStringPage(i)));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CategoryStringPage(i),
+                              ),
+                            );
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 10),
                             margin: EdgeInsets.symmetric(vertical: 7),
                             decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.02),
-                                border: Border.all(
-                                    color: Colors.white.withOpacity(0.5)),
+                                color: Color(0xff282828),
+                                // border: Border.all(
+                                //     color: Colors.white.withOpacity(0.5)),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,7 +151,7 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.white,
-                                )
+                                ),
                               ],
                             ),
                           ),

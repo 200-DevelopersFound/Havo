@@ -99,8 +99,8 @@ class _SignUpState extends State<SignUp> {
                               passwordController.text)
                           .then((value) {
                         if (value != "error") {
-                          User(usernameController.text, emailController.text,
-                              value);
+                          User.UserCreate(usernameController.text,
+                              emailController.text, value);
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => HomeScreen()));

@@ -18,9 +18,48 @@ class CategoryApi {
     return categoryList;
   }
 
-  static Future<String> getCategory(String email) async {
+  static Future<String> getCategory(String token) async {
     final response = await http.post(
-      Uri.parse(api + '/email/trigger/otp'),
+      Uri.parse(api + '/user/category/get'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'token': token,
+      }),
+    );
+    if (response.statusCode == 200) {
+      var x = jsonDecode(response.body);
+      print("token" + response.body);
+      return x['dialogues'];
+    } else {
+      return "error";
+    }
+  }
+
+  static Future<String> addCategory(String email) async {
+    final response = await http.post(
+      Uri.parse(api + '/user/category/create/category'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      var x = jsonDecode(response.body);
+      print("key:" + x.toString());
+      return x['verification_key'];
+    } else {
+      throw Exception('Failed to get OTP.');
+    }
+  }
+
+  static Future<String> updateCategory(String email) async {
+    final response = await http.post(
+      Uri.parse(api + '/user/category/update/dialogue'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

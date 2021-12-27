@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_digital_ink_recognition_example/Api/User.dart';
+import 'package:learning_digital_ink_recognition_example/Api/loginUser.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/login.dart';
 import 'package:provider/provider.dart';
 
 import 'CustomButton.dart';
@@ -18,7 +21,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -27,11 +30,11 @@ class _SignInState extends State<SignIn> {
       padding: EdgeInsets.all(12),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         label(
-          icon: CupertinoIcons.person,
-          text: 'Username',
+          icon: CupertinoIcons.mail,
+          text: 'Email',
         ),
         CustomTextField(
-          controller: userNameController,
+          controller: emailController,
         ),
         SizedBox(
           height: 20,
@@ -54,12 +57,18 @@ class _SignInState extends State<SignIn> {
         CustomButton(
           icon: Icons.arrow_forward,
           text: 'Sign in',
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (BuildContext context) {
-                return HomeScreen();
-              },
-            ));
+          onTap: () async {
+            await loginUser(emailController.text, passwordController.text)
+                .then((value) {
+              User.UserLogin(emailController.text, value);
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => HomeScreen()));
+            });
+            // Navigator.push(context, MaterialPageRoute(
+            //   builder: (BuildContext context) {
+            //     return HomeScreen();
+            //   },
+            // ));
           },
         ),
       ]),
