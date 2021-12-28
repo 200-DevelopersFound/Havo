@@ -29,7 +29,7 @@ class _PlayingStringState extends State<PlayingString> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       margin: EdgeInsets.symmetric(vertical: 7),
       decoration: BoxDecoration(
           color: Color(0xff282828), borderRadius: BorderRadius.circular(10)),

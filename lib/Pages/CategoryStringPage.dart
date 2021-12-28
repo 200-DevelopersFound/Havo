@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Components/CustomDialog.dart';
 import 'package:learning_digital_ink_recognition_example/Components/PlayingString.dart';
@@ -80,7 +81,8 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
                     child: Center(
                       child: Text(
                         CategoryApi.categoryList[idx].title,
-                        style: TextStyle(color: Colors.white, fontSize: 23),
+                        style: GoogleFonts.firaSans(
+                            color: Colors.white, fontSize: 23),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

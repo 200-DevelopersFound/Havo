@@ -3,6 +3,7 @@ import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
 import 'package:learning_digital_ink_recognition_example/tts.dart';
 
+import 'Home.dart';
 import 'login.dart';
 
 void main() {

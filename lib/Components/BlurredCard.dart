@@ -28,8 +28,9 @@ class _BlurredCardState extends State<BlurredCard> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          height: 300,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          height: 170,
+          width: 275,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -48,21 +49,24 @@ class _BlurredCardState extends State<BlurredCard> {
                   Text(
                     widget.heading,
                     style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 28,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                   Icon(
                     widget.icon,
                     color: Colors.white,
-                    size: 100,
+                    size: 40,
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 10,
               ),
               Text(
                 widget.subheading,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),

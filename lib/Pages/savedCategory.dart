@@ -185,7 +185,7 @@ class CategoryListCard extends StatelessWidget {
                 );
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                 margin: EdgeInsets.symmetric(vertical: 7),
                 decoration: BoxDecoration(
                     color: Color(0xff282828),
