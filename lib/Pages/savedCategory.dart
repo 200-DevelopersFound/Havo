@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Components/CustomDialog.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/CategoryStringPage.dart';
@@ -77,7 +78,8 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                   Expanded(
                     child: Center(
                       child: Text('Saved Category',
-                          style: TextStyle(color: Colors.white, fontSize: 23)),
+                          style: GoogleFonts.firaSans(
+                              color: Colors.white, fontSize: 23)),
                     ),
                   ),
                   Container(

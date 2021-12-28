@@ -25,13 +25,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home:
-          // SavedCategoryPage(),
+          //  SavedCategoryPage(),
           login(),
-
-      // ChangeNotifierProvider(
-      //   create: (_) => DigitalInkRecognition2State(),
-      //   child: DigitalInkRecognitionPage2(),
-      // ),
     );
   }
 }

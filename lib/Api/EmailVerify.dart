@@ -25,6 +25,6 @@ Future<bool> emailVerify(
     else
       return false;
   } else {
-    throw Exception('Failed to verify email.');
+    return false;
   }
 }
