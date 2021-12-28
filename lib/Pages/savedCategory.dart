@@ -22,6 +22,7 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
     // TODO: implement initState
     super.initState();
     categoryList = CategoryApi.getDummy();
+    CategoryApi.getCategory();
   }
 
   @override
@@ -119,50 +120,85 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (var i = 0; i < 10; i++)
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryStringPage(i),
+                child: FutureBuilder<List<Category>>(
+                    future: CategoryApi.getCategory(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Container(
+                              child: Text(
+                                'Some Error occured',
+                                style: TextStyle(color: Colors.white),
                               ),
-                            );
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            margin: EdgeInsets.symmetric(vertical: 7),
-                            decoration: BoxDecoration(
-                                color: Color(0xff282828),
-                                // border: Border.all(
-                                //     color: Colors.white.withOpacity(0.5)),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(categoryList[i].title,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 23)),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                ),
-                              ],
                             ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
+                          );
+                        }
+
+                        return CategoryListCard(categoryList: categoryList);
+                      } else
+                        return Center(
+                          child: Container(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator()),
+                        );
+                    }),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CategoryListCard extends StatelessWidget {
+  const CategoryListCard({
+    Key? key,
+    required this.categoryList,
+  }) : super(key: key);
+
+  final List<Category> categoryList;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          for (var i = 0; i < 10; i++)
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategoryStringPage(i),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                margin: EdgeInsets.symmetric(vertical: 7),
+                decoration: BoxDecoration(
+                    color: Color(0xff282828),
+                    // border: Border.all(
+                    //     color: Colors.white.withOpacity(0.5)),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(categoryList[i].title,
+                        style: TextStyle(color: Colors.white, fontSize: 23)),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }

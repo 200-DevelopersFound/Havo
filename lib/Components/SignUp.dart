@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CreateUser.dart';
 import 'package:learning_digital_ink_recognition_example/Api/EmailOtp.dart';
 import 'package:learning_digital_ink_recognition_example/Api/EmailVerify.dart';
-import 'package:learning_digital_ink_recognition_example/Api/User.dart';
+import 'package:learning_digital_ink_recognition_example/model/User.dart';
 import 'package:learning_digital_ink_recognition_example/Components/CustomTextField.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
 

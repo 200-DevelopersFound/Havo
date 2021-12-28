@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:learning_digital_ink_recognition_example/constants/api.dart';
+import 'package:learning_digital_ink_recognition_example/model/User.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
 
 class CategoryApi {
@@ -11,29 +13,34 @@ class CategoryApi {
 
   static List<Category> getDummy() {
     for (int i = 0; i < 10; i++)
-      categoryList.add(Category(i.toString(), "String$i", [
+      categoryList
+          .add(Category(id: i.toString(), title: "String$i", dialogues: [
         "See your saved message and lets you easily convert into voice$i 1",
         "String$i 2"
       ]));
     return categoryList;
   }
 
-  static Future<String> getCategory(String token) async {
+  static Future<List<Category>> getCategory() async {
     final response = await http.post(
       Uri.parse(api + '/user/category/get'),
-      headers: <String, String>{
+      headers: {
         'Content-Type': 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer ' + User.logintoken,
       },
-      body: jsonEncode(<String, String>{
-        'token': token,
-      }),
+      body: jsonEncode(<String, String>{}),
     );
     if (response.statusCode == 200) {
       var x = jsonDecode(response.body);
       print("token" + response.body);
-      return x['dialogues'];
+      List<Category> d = Category.allCategoryFromJson(response.body);
+      print('d' + d.toString());
+      return d;
     } else {
-      return "error";
+      var x = jsonDecode(response.body);
+      print("ton" + response.body);
+
+      return x;
     }
   }
 
@@ -42,6 +49,7 @@ class CategoryApi {
       Uri.parse(api + '/user/category/create/category'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer ' + User.logintoken,
       },
       body: jsonEncode(<String, String>{
         'email': email,

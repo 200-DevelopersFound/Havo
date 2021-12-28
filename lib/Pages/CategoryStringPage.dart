@@ -119,7 +119,7 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
                   child: Column(
                     children: [
                       for (var i = 0; i < 2; i++)
-                        PlayingString(text: categoryList[idx].strings[i]),
+                        PlayingString(text: categoryList[idx].dialogues[i]),
                     ],
                   ),
                 ),
