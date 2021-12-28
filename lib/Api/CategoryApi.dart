@@ -33,9 +33,8 @@ class CategoryApi {
     if (response.statusCode == 200) {
       var x = jsonDecode(response.body);
       print("token" + response.body);
-      List<Category> d = Category.allCategoryFromJson(response.body);
-      print('d' + d.toString());
-      return d;
+      categoryList = Category.allCategoryFromJson(response.body);
+      return categoryList;
     } else {
       var x = jsonDecode(response.body);
       print("ton" + response.body);
@@ -44,7 +43,7 @@ class CategoryApi {
     }
   }
 
-  static Future<String> addCategory(String email) async {
+  static Future<bool> addCategory(String title) async {
     final response = await http.post(
       Uri.parse(api + '/user/category/create/category'),
       headers: <String, String>{
@@ -52,20 +51,23 @@ class CategoryApi {
         HttpHeaders.authorizationHeader: 'Bearer ' + User.logintoken,
       },
       body: jsonEncode(<String, String>{
-        'email': email,
+        'categoryName': title,
       }),
     );
+    print(response.body);
+    print('statusCode');
+    print(response.statusCode);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var x = jsonDecode(response.body);
       print("key:" + x.toString());
-      return x['verification_key'];
+      return true;
     } else {
-      throw Exception('Failed to get OTP.');
+      throw false;
     }
   }
 
-  static Future<String> updateCategory(String email) async {
+  static Future<bool> updateCategory(String email) async {
     final response = await http.post(
       Uri.parse(api + '/user/category/update/dialogue'),
       headers: <String, String>{

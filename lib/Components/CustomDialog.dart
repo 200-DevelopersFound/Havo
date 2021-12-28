@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 
 import 'CustomTextField.dart';
 
 class CustomDialog extends StatefulWidget {
-  final Function onTap;
-
+  final int onTap;
   const CustomDialog({required this.onTap, Key? key}) : super(key: key);
 
   @override
@@ -12,15 +12,14 @@ class CustomDialog extends StatefulWidget {
 }
 
 class _CustomDialogState extends State<CustomDialog> {
-  late TextEditingController categoryController;
   @override
   void initState() {
-    categoryController = TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController mController = TextEditingController();
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -52,7 +51,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
             CustomTextField(
-              controller: categoryController,
+              controller: mController,
               height: 14,
             ),
             Spacer(),
@@ -60,7 +59,27 @@ class _CustomDialogState extends State<CustomDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () async {
+                    if (widget.onTap == 1)
+                      await CategoryApi.addCategory(mController.text)
+                          .then((value) async {
+                        if (value == true) {
+                          print('true');
+                          await CategoryApi.getCategory();
+                          Navigator.of(context).pop();
+                        } else
+                          print('false');
+                      });
+                    if (widget.onTap == 2)
+                      await CategoryApi.updateCategory(mController.text)
+                          .then((value) {
+                        if (value == true) {
+                          print('true');
+                          Navigator.of(context).pop();
+                        } else
+                          print('false');
+                      });
+                  },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                     decoration: BoxDecoration(

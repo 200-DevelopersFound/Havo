@@ -40,14 +40,13 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return CustomDialog(
-                    onTap: () async {
-                      // await addCategory();
-                    },
-                  );
-                });
+              context: context,
+              builder: (BuildContext context) {
+                return CustomDialog(
+                  onTap: 1,
+                );
+              },
+            ).then((value) => setState(() {}));
           },
           backgroundColor: orange,
           child: Icon(
@@ -134,8 +133,15 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                             ),
                           );
                         }
-
-                        return CategoryListCard(categoryList: categoryList);
+                        if (snapshot.data!.length == 0)
+                          return Center(
+                              child: Container(
+                            child: Text(
+                              'Hey looking for something? Actually you forgot to add First',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ));
+                        return CategoryListCard(categoryList: snapshot.data!);
                       } else
                         return Center(
                           child: Container(
@@ -166,7 +172,7 @@ class CategoryListCard extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          for (var i = 0; i < 10; i++)
+          for (var i = 0; i < categoryList.length; i++)
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -181,8 +187,6 @@ class CategoryListCard extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 7),
                 decoration: BoxDecoration(
                     color: Color(0xff282828),
-                    // border: Border.all(
-                    //     color: Colors.white.withOpacity(0.5)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
