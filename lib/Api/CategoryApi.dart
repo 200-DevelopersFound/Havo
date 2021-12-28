@@ -37,7 +37,6 @@ class CategoryApi {
       return categoryList;
     } else {
       var x = jsonDecode(response.body);
-      print("ton" + response.body);
 
       return x;
     }
@@ -54,9 +53,6 @@ class CategoryApi {
         'categoryName': title,
       }),
     );
-    print(response.body);
-    print('statusCode');
-    print(response.statusCode);
 
     if (response.statusCode == 201) {
       var x = jsonDecode(response.body);
@@ -67,29 +63,31 @@ class CategoryApi {
     }
   }
 
-  static Future<bool> updateCategory(String email) async {
+  static Future<bool> updateCategory(String dialogue, String id) async {
     final response = await http.post(
       Uri.parse(api + '/user/category/update/dialogue'),
       headers: <String, String>{
+        HttpHeaders.authorizationHeader: 'Bearer ' + User.logintoken,
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        'email': email,
-      }),
+      body:
+          jsonEncode(<String, String>{'categoryId': id, 'dialogue': dialogue}),
     );
-
-    if (response.statusCode == 200) {
+    print(response.body);
+    print('statusCode');
+    print(response.statusCode);
+    if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       // id=""->,otp from email,email
       var x = jsonDecode(response.body);
-      print("key:" + x.toString());
-      return x['verification_key'];
+      return true;
       // return Album.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      throw Exception('Failed to get OTP.');
+      return false;
+      // throw Exception('Failed to get OTP.');
     }
   }
 }

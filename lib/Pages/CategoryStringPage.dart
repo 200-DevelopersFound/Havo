@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
+import 'package:learning_digital_ink_recognition_example/Components/CustomDialog.dart';
 import 'package:learning_digital_ink_recognition_example/Components/PlayingString.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:learning_digital_ink_recognition_example/model/category.dart';
@@ -18,12 +19,10 @@ class CategoryStringPage extends StatefulWidget {
 }
 
 class _CategoryStringPageState extends State<CategoryStringPage> {
-  List<Category> categoryList = [];
   late int idx;
   @override
   void initState() {
     super.initState();
-    categoryList = CategoryApi.getDummy();
     idx = widget.idx;
   }
 
@@ -40,7 +39,17 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomDialog(
+                  onTap: 2,
+                  id: CategoryApi.categoryList[idx].id,
+                );
+              },
+            ).then((value) => setState(() {}));
+          },
           backgroundColor: orange,
           child: Icon(
             Icons.add,
@@ -70,7 +79,7 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        'Introduction',
+                        CategoryApi.categoryList[idx].title,
                         style: TextStyle(color: Colors.white, fontSize: 23),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -115,18 +124,44 @@ class _CategoryStringPageState extends State<CategoryStringPage> {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (var i = 0; i < 2; i++)
-                        PlayingString(text: categoryList[idx].dialogues[i]),
-                    ],
-                  ),
-                ),
+                child: DialoguesListCard(
+                    categoryList: CategoryApi.categoryList, idx: idx),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DialoguesListCard extends StatelessWidget {
+  const DialoguesListCard({
+    Key? key,
+    required this.categoryList,
+    required this.idx,
+  }) : super(key: key);
+
+  final List<Category> categoryList;
+  final int idx;
+
+  @override
+  Widget build(BuildContext context) {
+    Category x = categoryList[idx];
+    if (categoryList[idx].dialogues.length == 0)
+      return Center(
+          child: Container(
+        child: Text(
+          'Hey looking for something? Actually you forgot to add First',
+          style: TextStyle(color: Colors.white),
+        ),
+      ));
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          for (var i = 0; i < categoryList[idx].dialogues.length; i++)
+            PlayingString(text: categoryList[idx].dialogues[i]),
+        ],
       ),
     );
   }

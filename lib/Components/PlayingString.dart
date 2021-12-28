@@ -32,9 +32,7 @@ class _PlayingStringState extends State<PlayingString> {
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       margin: EdgeInsets.symmetric(vertical: 7),
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.02),
-          border: Border.all(color: Colors.white.withOpacity(0.5)),
-          borderRadius: BorderRadius.circular(10)),
+          color: Color(0xff282828), borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

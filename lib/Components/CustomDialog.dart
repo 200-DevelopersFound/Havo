@@ -5,7 +5,9 @@ import 'CustomTextField.dart';
 
 class CustomDialog extends StatefulWidget {
   final int onTap;
-  const CustomDialog({required this.onTap, Key? key}) : super(key: key);
+  final String? id;
+  const CustomDialog({required this.onTap, this.id, Key? key})
+      : super(key: key);
 
   @override
   _CustomDialogState createState() => _CustomDialogState();
@@ -71,10 +73,12 @@ class _CustomDialogState extends State<CustomDialog> {
                           print('false');
                       });
                     if (widget.onTap == 2)
-                      await CategoryApi.updateCategory(mController.text)
-                          .then((value) {
+                      await CategoryApi.updateCategory(
+                              mController.text, widget.id!)
+                          .then((value) async {
                         if (value == true) {
                           print('true');
+                          await CategoryApi.getCategory();
                           Navigator.of(context).pop();
                         } else
                           print('false');
