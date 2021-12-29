@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
-  bool? isPasswordField;
+  bool isPasswordField;
   double? height;
   CustomTextField({
     required this.controller,
-    this.isPasswordField,
+    required this.isPasswordField,
     this.height,
     Key? key,
   }) : super(key: key);
@@ -54,7 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 )
               : null,
         ),
-        obscureText: icon == CupertinoIcons.eye_fill ? false : true,
+        obscureText: widget.isPasswordField,
       ),
     );
   }

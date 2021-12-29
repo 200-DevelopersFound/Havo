@@ -53,6 +53,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
             CustomTextField(
+              isPasswordField: false,
               controller: mController,
               height: 14,
             ),

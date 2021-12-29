@@ -26,6 +26,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController usernameController = TextEditingController();
   String id = "";
   bool IsVerify = false;
+  Color? color;
   @override
   Widget build(BuildContext context) {
     return IsVerify == true
@@ -48,7 +49,10 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.5 - 20,
-                          child: CustomTextField(controller: fnameController),
+                          child: CustomTextField(
+                            controller: fnameController,
+                            isPasswordField: false,
+                          ),
                         ),
                       ],
                     ),
@@ -66,7 +70,10 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.5 - 20,
-                          child: CustomTextField(controller: lnameController),
+                          child: CustomTextField(
+                            controller: lnameController,
+                            isPasswordField: false,
+                          ),
                         ),
                       ],
                     )
@@ -78,14 +85,20 @@ class _SignUpState extends State<SignUp> {
                     text: 'Username',
                   ),
                 ),
-                CustomTextField(controller: usernameController),
+                CustomTextField(
+                  controller: usernameController,
+                  isPasswordField: false,
+                ),
                 Container(
                   padding: EdgeInsets.only(left: 5),
                   child: label(
                     text: 'Password',
                   ),
                 ),
-                CustomTextField(controller: passwordController),
+                CustomTextField(
+                  controller: passwordController,
+                  isPasswordField: false,
+                ),
                 Container(
                   // margin: EdgeInsets.symmetric(vertical: 20),
                   child: CustomButton(
@@ -121,7 +134,10 @@ class _SignUpState extends State<SignUp> {
                   text: 'Email',
                   icon: CupertinoIcons.at_circle,
                 ),
-                CustomTextField(controller: emailController),
+                CustomTextField(
+                  controller: emailController,
+                  isPasswordField: false,
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -141,8 +157,12 @@ class _SignUpState extends State<SignUp> {
                 label(
                   text: 'OTP',
                   icon: CupertinoIcons.at_circle,
+                  color: color,
                 ),
-                CustomTextField(controller: otpController),
+                CustomTextField(
+                  controller: otpController,
+                  isPasswordField: false,
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -154,6 +174,7 @@ class _SignUpState extends State<SignUp> {
                             id.toString())
                         .then((value) {
                       setState(() {
+                        if (value == false) color = Colors.red;
                         IsVerify = value;
                       });
                       return value;

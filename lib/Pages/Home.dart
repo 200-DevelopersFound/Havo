@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController mController = TextEditingController();
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,22 +77,18 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         body: SafeArea(
-          child: getBody(_selectedIndex, ScreenOrientationUpdate),
+          child: getBody(_selectedIndex),
         ),
       ),
     );
   }
-
-  void ScreenOrientationUpdate() {
-    setState(() {
-      // _selectedIndex = 1;
-    });
-  }
 }
 
-getBody(int s, Function() update) {
+getBody(
+  int s,
+) {
   if (s == 1)
-    return HomeBody(screenOrientationUpdate: update);
+    return HomeBody();
   else if (s == 2)
     return SavedCategoryPage();
   else

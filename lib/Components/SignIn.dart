@@ -23,7 +23,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,14 +32,16 @@ class _SignInState extends State<SignIn> {
         label(
           icon: CupertinoIcons.mail,
           text: 'Email',
+          color: color,
         ),
         CustomTextField(
           controller: emailController,
+          isPasswordField: false,
         ),
         SizedBox(
           height: 20,
         ),
-        label(icon: CupertinoIcons.lock, text: 'Password'),
+        label(icon: CupertinoIcons.lock, color: color, text: 'Password'),
         CustomTextField(
           controller: passwordController,
           isPasswordField: true,
@@ -60,9 +62,14 @@ class _SignInState extends State<SignIn> {
           onTap: () async {
             await loginUser(emailController.text, passwordController.text)
                 .then((value) {
-              User.UserLogin(emailController.text, value);
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomeScreen()));
+              if (value != "error") {
+                User.UserLogin(emailController.text, value);
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              } else
+                setState(() {
+                  color = Colors.redAccent;
+                });
             });
             // Navigator.push(context, MaterialPageRoute(
             //   builder: (BuildContext context) {

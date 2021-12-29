@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 class label extends StatelessWidget {
   final String text;
   IconData? icon;
+  Color? color;
+
   label({
     Key? key,
     required this.text,
     this.icon,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -19,7 +22,7 @@ class label extends StatelessWidget {
           if (icon != null)
             Icon(
               icon,
-              color: Colors.grey,
+              color: color != null ? color : Colors.grey,
               size: 20,
             ),
           if (icon != null)
@@ -28,7 +31,7 @@ class label extends StatelessWidget {
             ),
           Text(text,
               style: TextStyle(
-                  color: Colors.grey,
+                  color: color != null ? color : Colors.grey,
                   fontSize: 16,
                   fontWeight: FontWeight.w500))
         ],
