@@ -17,7 +17,7 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  IconData icon = CupertinoIcons.eye_fill;
+  IconData icon = CupertinoIcons.eye_slash_fill;
 
   @override
   Widget build(BuildContext context) {

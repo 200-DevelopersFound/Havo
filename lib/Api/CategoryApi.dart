@@ -59,7 +59,7 @@ class CategoryApi {
       print("key:" + x.toString());
       return true;
     } else {
-      throw false;
+      return false;
     }
   }
 

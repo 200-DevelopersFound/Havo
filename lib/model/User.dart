@@ -1,5 +1,8 @@
 class User {
-  static late String username, email;
+  static late String username = "Yogeshk4124",
+      email = "yogeshk4124@gmail.com",
+      fname = "Yogesh",
+      lname = "Kumar";
   static late String logintoken;
   static UserCreate(String uname, String e, String ltoken) {
     username = uname;
