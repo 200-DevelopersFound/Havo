@@ -4,6 +4,8 @@ import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:learning_digital_ink_recognition/learning_digital_ink_recognition.dart';
 import 'package:learning_digital_ink_recognition_example/Utility/painter.dart';
+import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
+import 'package:learning_digital_ink_recognition_example/model/drawer.dart';
 import 'package:learning_digital_ink_recognition_example/tts.dart';
 import 'package:provider/provider.dart';
 
@@ -22,23 +24,28 @@ class _DigitalInkRecognitionPage2State
 
   double get _width => MediaQuery.of(context).size.width;
   double _height = 480;
-  int hidePicker = 0;
-  final _controller = CircleColorPickerController(
-    initialColor: Colors.blue,
-  );
-  final _bgController = CircleColorPickerController(
-    initialColor: Colors.blue,
-  );
 
   @override
   void initState() {
     _recognition = DigitalInkRecognition(model: _model);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
+
     super.initState();
   }
 
   @override
   void dispose() {
     _recognition.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+
     super.dispose();
   }
 
@@ -91,18 +98,8 @@ class _DigitalInkRecognitionPage2State
     }
   }
 
-  Future<void> _changePenColor(color) async {
-    state.changePenColor(color);
-  }
-
-  Future<void> _changeBgColor(color) async {
-    state.changeBgColor(color);
-  }
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -120,8 +117,8 @@ class _DigitalInkRecognitionPage2State
                     builder: (_, state, __) => CustomPaint(
                       painter: DigitalInkPainter(
                           writings: state.writings,
-                          strokeColor: state.penColor,
-                          background: state.bgColor),
+                          strokeColor: DrawingBoard.PenColor,
+                          background: DrawingBoard.bgColor),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,
@@ -138,7 +135,7 @@ class _DigitalInkRecognitionPage2State
                 onTap: _startRecognition,
                 child: CircleAvatar(
                   child: Icon(Icons.play_arrow),
-                  backgroundColor: Colors.amberAccent,
+                  backgroundColor: orange,
                 ),
               ),
             ),
@@ -149,45 +146,7 @@ class _DigitalInkRecognitionPage2State
                 onTap: _reset,
                 child: CircleAvatar(
                   child: Icon(Icons.refresh),
-                  backgroundColor: Colors.amberAccent,
-                ),
-              ),
-            ),
-            Positioned(
-              top: 130,
-              right: 10,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    if (hidePicker == 1)
-                      hidePicker = 0;
-                    else
-                      hidePicker = 1;
-                  });
-                },
-                child: CircleAvatar(
-                  child: Icon(Icons.border_color),
-                  backgroundColor:
-                      hidePicker != 1 ? Colors.amberAccent : Colors.red,
-                ),
-              ),
-            ),
-            Positioned(
-              top: 190,
-              right: 10,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    if (hidePicker == 2)
-                      hidePicker = 0;
-                    else
-                      hidePicker = 2;
-                  });
-                },
-                child: CircleAvatar(
-                  child: Icon(Icons.gradient),
-                  backgroundColor:
-                      hidePicker != 2 ? Colors.amberAccent : Colors.red,
+                  backgroundColor: orange,
                 ),
               ),
             ),
@@ -198,11 +157,16 @@ class _DigitalInkRecognitionPage2State
                 if (state.isNotProcessing && state.isNotEmpty) {
                   return Center(
                     child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       padding: EdgeInsets.symmetric(horizontal: 18),
                       child: Text(
                         state.toCompleteString(),
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: 18, color: DrawingBoard.PenColor),
                       ),
                     ),
                   );
@@ -219,34 +183,6 @@ class _DigitalInkRecognitionPage2State
                 }
                 return Container();
               }),
-            ),
-            Visibility(
-              visible: hidePicker == 1,
-              child: Align(
-                alignment: Alignment.center,
-                child: CircleColorPicker(
-                  controller: _controller,
-                  onChanged: (color) {
-                    setState(() {
-                      _changePenColor(color);
-                    });
-                  },
-                ),
-              ),
-            ),
-            Visibility(
-              visible: hidePicker == 2,
-              child: Align(
-                alignment: Alignment.center,
-                child: CircleColorPicker(
-                  controller: _bgController,
-                  onChanged: (color) {
-                    setState(() {
-                      _changeBgColor(color);
-                    });
-                  },
-                ),
-              ),
             ),
           ],
         ),

@@ -35,7 +35,7 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [darkBlack, lightBlack])),
+              colors: [lightBlack, darkBlack])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         floatingActionButton: FloatingActionButton(
@@ -68,18 +68,17 @@ class _SavedCategoryPageState extends State<SavedCategoryPage> {
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 30,
-                      ),
                     ),
                   ),
                   Expanded(
                     child: Center(
-                      child: Text('Saved Category',
-                          style: GoogleFonts.firaSans(
-                              color: Colors.white, fontSize: 23)),
+                      child: Text(
+                        'Saved Category',
+                        style: GoogleFonts.oswald(
+                          color: Colors.white,
+                          fontSize: 30,
+                        ),
+                      ),
                     ),
                   ),
                   Container(

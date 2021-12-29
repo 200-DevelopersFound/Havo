@@ -121,10 +121,6 @@ class _settingPageState extends State<settingPage> {
                   children: [
                     Container(
                       width: 50,
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
                     ),
                     Expanded(
                       child: Container(

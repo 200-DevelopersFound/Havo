@@ -3,14 +3,17 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/setting.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:progress_loading_button/progress_loading_button.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Components/BlurredCard.dart';
 import '../Components/Ink.dart';
+import 'HomeBody.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,11 +24,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController mController = TextEditingController();
-
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -34,236 +35,66 @@ class _HomeScreenState extends State<HomeScreen> {
               colors: [lightBlack, darkBlack])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        bottomNavigationBar: Container(
-          // color: Color(0xff1B2127),
-          // color: darkBlack,
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(
-                Icons.brush_outlined,
-                color: orange,
-                size: 26,
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.home_filled,
-                  color: orange,
-                  size: 26,
-                ),
-              ),
-              Icon(
-                CupertinoIcons.gear,
-                color: orange,
-                size: 26,
-              ),
-            ],
-          ),
+        bottomNavigationBar: GNav(
+          gap: 8,
+          backgroundColor: darkBlack,
+          iconSize: 24,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          duration: Duration(milliseconds: 400),
+          tabBackgroundColor: Colors.grey[100]!,
+          color: Colors.black,
+          tabs: [
+            GButton(
+              iconColor: orange,
+              icon: CupertinoIcons.gear,
+              text: 'Setting',
+              backgroundColor: orange,
+              textColor: Colors.white,
+              iconActiveColor: Colors.white,
+            ),
+            GButton(
+              icon: Icons.home_filled,
+              text: 'Home',
+              iconColor: orange,
+              backgroundColor: orange,
+              textColor: Colors.white,
+              iconActiveColor: Colors.white,
+            ),
+            GButton(
+              iconColor: orange,
+              icon: CupertinoIcons.doc,
+              text: 'Profile',
+              backgroundColor: orange,
+              textColor: Colors.white,
+              iconActiveColor: Colors.white,
+            ),
+          ],
+          selectedIndex: _selectedIndex,
+          onTabChange: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
         ),
         body: SafeArea(
-            child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Hi User!',
-                    style: GoogleFonts.oswald(
-                        fontSize: 34,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundImage: NetworkImage(
-                        'https://randomuser.me/api/portraits/women/' +
-                            Random().nextInt(100).toString() +
-                            '.jpg'),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 14,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    BlurredCard(
-                        heading: 'Drawing board',
-                        subheading:
-                            "Let's you write in the drawing board and convert your text into voice",
-                        icon: Icons.gesture,
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return ChangeNotifierProvider(
-                              create: (_) => DigitalInkRecognition2State(),
-                              child: DigitalInkRecognitionPage2(),
-                            );
-                          })).then((value) {
-                            setState(() {});
-                          });
-                        }),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    BlurredCard(
-                        heading: 'Saved',
-                        subheading:
-                            "See your saved message and lets you easily convert into voice",
-                        icon: Icons.list_alt_outlined,
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return SavedCategoryPage();
-                          })).then((value) {
-                            setState(() {});
-                          });
-                        }),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Column(
-                        children: [
-                          Text(
-                            'Total Category',
-                            style: GoogleFonts.oswald(
-                                fontSize: 15,
-                                color: orange,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            '120+',
-                            style: GoogleFonts.oswald(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      width: 3,
-                      decoration: BoxDecoration(
-                        color: orange,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Column(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Total Dialogues',
-                                style: GoogleFonts.oswald(
-                                    fontSize: 15,
-                                    color: orange,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                '120+',
-                                style: GoogleFonts.oswald(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 10),
-                      child: Text(
-                        'Add Category',
-                        style: GoogleFonts.oswald(
-                            color: Colors.white, fontSize: 22),
-                      ),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                          filled: true,
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          fillColor: lightBlack.withOpacity(0.6)),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: LoadingButton(
-                        height: 40,
-                        borderRadius: 15,
-                        onPressed: () async {
-                          await CategoryApi.addCategory(mController.text)
-                              .then((value) async {
-                            if (value == true) {
-                              print('true');
-                              await CategoryApi.getCategory();
-                              Navigator.of(context).pop();
-                            } else
-                              print('false');
-                          });
-                        },
-                        loadingWidget: CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                        color: orange,
-                        defaultWidget: Text(
-                          'Add',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.oswald(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        )),
+          child: getBody(_selectedIndex, ScreenOrientationUpdate),
+        ),
       ),
     );
   }
+
+  void ScreenOrientationUpdate() {
+    setState(() {
+      // _selectedIndex = 1;
+    });
+  }
+}
+
+getBody(int s, Function() update) {
+  if (s == 1)
+    return HomeBody(screenOrientationUpdate: update);
+  else if (s == 2)
+    return SavedCategoryPage();
+  else
+    return settingPage();
 }
