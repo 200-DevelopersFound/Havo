@@ -68,7 +68,7 @@ class _SignInState extends State<SignIn> {
                     MaterialPageRoute(builder: (context) => HomeScreen()));
               } else
                 setState(() {
-                  color = Colors.redAccent;
+                  color = Colors.red;
                 });
             });
             // Navigator.push(context, MaterialPageRoute(

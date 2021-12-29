@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:learning_digital_ink_recognition_example/Api/logout.dart';
 import 'package:learning_digital_ink_recognition_example/Components/ColorPicker.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/login.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 import 'package:learning_digital_ink_recognition_example/model/User.dart';
 import 'package:learning_digital_ink_recognition_example/model/drawer.dart';
@@ -135,7 +137,13 @@ class _settingPageState extends State<settingPage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        await logout().then((value) => Navigator.of(context)
+                                .pushReplacement(
+                                    MaterialPageRoute(builder: (context) {
+                              return login();
+                            })));
+                      },
                       child: Container(
                         width: 50,
                         child: Icon(

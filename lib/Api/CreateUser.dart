@@ -27,10 +27,7 @@ Future<String> createUser(String fname, String lname, String username,
       return x['token'];
     else
       return "error";
-    // return Album.fromJson(jsonDecode(response.body));
   } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
     return "error";
   }
 }

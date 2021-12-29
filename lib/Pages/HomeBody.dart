@@ -189,6 +189,8 @@ class _HomeBodyState extends State<HomeBody> {
                         ),
                       ),
                       TextField(
+                        cursorColor: Colors.white,
+                        style: GoogleFonts.oswald(color: Colors.white),
                         decoration: InputDecoration(
                             filled: true,
                             border: OutlineInputBorder(

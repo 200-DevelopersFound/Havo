@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learning_digital_ink_recognition_example/Components/SignUp.dart';
 
 import '../Components/SignIn.dart';
@@ -16,9 +17,21 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> with SingleTickerProviderStateMixin {
   late TabController tabController;
+  int tabCheck = 0;
   @override
   void initState() {
     tabController = new TabController(vsync: this, length: 2, initialIndex: 0);
+    print("here1:" + tabController.indexIsChanging.toString());
+    tabController.animation?.addListener(() {
+      if (tabController.offset > 0.5)
+        setState(() {
+          tabCheck = 1;
+        });
+      else if (tabController.offset < -0.5)
+        setState(() {
+          tabCheck = 0;
+        });
+    });
     super.initState();
   }
 
@@ -43,14 +56,22 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
         body: SafeArea(
           child: Column(
             children: [
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Havo',
-                    style: TextStyle(fontSize: 40, color: orange),
-                  ),
+              Container(
+                margin: EdgeInsets.all(10),
+                width: 150,
+                height: 150,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(color: orange, width: 10),
+                  shape: BoxShape.circle,
                 ),
+                child: Text(
+                  'Havo',
+                  style: GoogleFonts.pacifico(fontSize: 40, color: orange),
+                ),
+              ),
+              SizedBox(
+                height: 5,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.70,
@@ -65,16 +86,32 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SizedBox(
-                        height: 10,
-                      ),
                       Container(
                         height: 60,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(color: Colors.white))),
                         child: TabBar(
                             controller: tabController,
                             indicatorColor: orange,
                             labelColor: Colors.white,
                             unselectedLabelColor: Colors.grey[600],
+                            indicator: BoxDecoration(
+                              color: orange,
+                              borderRadius: BorderRadius.only(
+                                topLeft: tabCheck == 0
+                                    ? Radius.circular(40)
+                                    : Radius.zero,
+                                topRight: tabCheck == 1
+                                    ? Radius.circular(40)
+                                    : Radius.zero,
+                              ),
+                            ),
+                            onTap: (idx) {
+                              setState(() {
+                                tabCheck = tabController.index;
+                              });
+                            },
                             tabs: [
                               Tab(
                                 child: Text(
@@ -101,7 +138,6 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
                                 );
                               },
                             ),
-                            // SignIn(),
                             AnimatedBuilder(
                               animation: tabController.animation!,
                               builder: (BuildContext context, snapshot) {

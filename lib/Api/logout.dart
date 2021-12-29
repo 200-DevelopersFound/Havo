@@ -1,23 +1,22 @@
+import 'dart:io';
+
 import 'package:learning_digital_ink_recognition_example/constants/api.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:learning_digital_ink_recognition_example/model/User.dart';
 
-Future<bool> logout(String email, String otp, String verificationKey) async {
-  print("custom" + verificationKey);
-  final response = await http.post(
-    Uri.parse(api + '/email/logout'),
+Future<bool> logout() async {
+  final response = await http.delete(
+    Uri.parse(api + '/user/logout'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
+      HttpHeaders.authorizationHeader: 'Bearer ' + User.logintoken,
     },
     body: jsonEncode(<String, String>{}),
   );
   print(response.body);
   if (response.statusCode == 200) {
-    var x = jsonDecode(response.body);
-    if (x['status'] == "SUCCESS")
-      return true;
-    else
-      return false;
+    return true;
   } else {
     return false;
   }

@@ -112,8 +112,12 @@ class _SignUpState extends State<SignUp> {
                               passwordController.text)
                           .then((value) {
                         if (value != "error") {
-                          User.UserCreate(usernameController.text,
-                              emailController.text, value);
+                          User.UserCreate(
+                              usernameController.text,
+                              emailController.text,
+                              value,
+                              fnameController.text,
+                              lnameController.text);
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => HomeScreen()));
