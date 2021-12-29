@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
+import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
+import 'package:progress_loading_button/progress_loading_button.dart';
 
 import 'CustomTextField.dart';
 
@@ -22,6 +24,7 @@ class _CustomDialogState extends State<CustomDialog> {
   @override
   Widget build(BuildContext context) {
     TextEditingController mController = TextEditingController();
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -29,7 +32,7 @@ class _CustomDialogState extends State<CustomDialog> {
       elevation: 0,
       backgroundColor: Colors.transparent,
       child: Container(
-        height: 220,
+        height: 230,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -39,7 +42,7 @@ class _CustomDialogState extends State<CustomDialog> {
         child: Column(
           children: [
             Text(
-              'Add Category',
+              widget.onTap == 1 ? 'Add Category' : 'Add Dialogue',
               style: TextStyle(color: Colors.white, fontSize: 22),
             ),
             SizedBox(
@@ -61,41 +64,45 @@ class _CustomDialogState extends State<CustomDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                GestureDetector(
-                  onTap: () async {
-                    if (widget.onTap == 1)
-                      await CategoryApi.addCategory(mController.text)
-                          .then((value) async {
-                        if (value == true) {
-                          print('true');
-                          await CategoryApi.getCategory();
-                          Navigator.of(context).pop();
-                        } else
-                          print('false');
-                      });
-                    if (widget.onTap == 2)
-                      await CategoryApi.updateCategory(
-                              mController.text, widget.id!)
-                          .then((value) async {
-                        if (value == true) {
-                          print('true');
-                          await CategoryApi.getCategory();
-                          Navigator.of(context).pop();
-                        } else
-                          print('false');
-                      });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Text(
-                      'Add',
-                      style: TextStyle(color: Colors.white),
+                LoadingButton(
+                    width: 70,
+                    height: 32,
+                    borderRadius: 20,
+                    defaultWidget: Container(
+                      alignment: Alignment.center,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        'Add',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                ),
+                    onPressed: () async {
+                      if (widget.onTap == 1)
+                        await CategoryApi.addCategory(mController.text)
+                            .then((value) async {
+                          if (value == true) {
+                            print('true');
+                            await CategoryApi.getCategory();
+                            Navigator.of(context).pop();
+                          } else
+                            print('false');
+                        });
+                      if (widget.onTap == 2)
+                        await CategoryApi.updateCategory(
+                                mController.text, widget.id!)
+                            .then((value) async {
+                          if (value == true) {
+                            print('true');
+                            await CategoryApi.getCategory();
+                            Navigator.of(context).pop();
+                          } else
+                            print('false');
+                        });
+                    }),
                 SizedBox(
                   width: 10,
                 ),

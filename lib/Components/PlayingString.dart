@@ -77,7 +77,7 @@ class _PlayingStringState extends State<PlayingString> {
                         indicatorType: Indicator.lineScaleParty,
                         colors: const [Colors.white],
                         strokeWidth: 2,
-                        backgroundColor: Colors.black,
+                        backgroundColor: Color(0xff282828),
                         pathBackgroundColor: Colors.black),
                   ),
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
 import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
+import 'package:learning_digital_ink_recognition_example/Pages/setting.dart';
 import 'package:learning_digital_ink_recognition_example/tts.dart';
 
 import 'Home.dart';
@@ -8,9 +10,12 @@ import 'login.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   CategoryApi.CategoryApiInit();
   tts.ttsInit();
-  runApp(MyApp());
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp])
+      .then((value) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {

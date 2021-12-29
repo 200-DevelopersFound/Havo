@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             GButton(
               iconColor: orange,
               icon: CupertinoIcons.doc,
-              text: 'Profile',
+              text: 'Category',
               backgroundColor: orange,
               textColor: Colors.white,
               iconActiveColor: Colors.white,

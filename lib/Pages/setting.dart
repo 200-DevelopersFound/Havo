@@ -19,15 +19,6 @@ class settingPage extends StatefulWidget {
   _settingPageState createState() => _settingPageState();
 }
 
-/*
-  Account Profile picture,
-  uName ,Lastname,FirstName,
-  Password,
-  Logout,
-  Pen Color,
-  Background Color,
-
-*/
 class _settingPageState extends State<settingPage> {
   late TextEditingController userNameController;
   late TextEditingController fnameController;
@@ -251,6 +242,9 @@ class _settingPageState extends State<settingPage> {
                                 enabled: isUsernameEditable,
                               ),
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -258,7 +252,15 @@ class _settingPageState extends State<settingPage> {
                                 });
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: isUsernameEditable
+                                        ? orange
+                                        : Colors.transparent),
                                 child: Icon(
                                   Icons.edit,
                                   size: 20,
@@ -303,6 +305,9 @@ class _settingPageState extends State<settingPage> {
                                 enabled: isFnameEditable,
                               ),
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -310,7 +315,15 @@ class _settingPageState extends State<settingPage> {
                                 });
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: isFnameEditable
+                                        ? orange
+                                        : Colors.transparent),
                                 child: Icon(
                                   Icons.edit,
                                   size: 20,
@@ -355,6 +368,9 @@ class _settingPageState extends State<settingPage> {
                                 enabled: isLnameEditable,
                               ),
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -362,7 +378,15 @@ class _settingPageState extends State<settingPage> {
                                 });
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: isLnameEditable
+                                        ? orange
+                                        : Colors.transparent),
                                 child: Icon(
                                   Icons.edit,
                                   size: 20,
@@ -407,6 +431,9 @@ class _settingPageState extends State<settingPage> {
                                 enabled: isEmailEditable,
                               ),
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -414,7 +441,15 @@ class _settingPageState extends State<settingPage> {
                                 });
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: isEmailEditable
+                                        ? orange
+                                        : Colors.transparent),
                                 child: Icon(
                                   Icons.edit,
                                   size: 20,
@@ -460,6 +495,9 @@ class _settingPageState extends State<settingPage> {
                                 enabled: isPasswordEditable,
                               ),
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -467,7 +505,15 @@ class _settingPageState extends State<settingPage> {
                                 });
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: isPasswordEditable
+                                        ? orange
+                                        : Colors.transparent),
                                 child: Icon(
                                   Icons.edit,
                                   size: 20,
