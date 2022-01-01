@@ -13,18 +13,18 @@ Future<String> getOTP(String email) async {
       'email': email,
     }),
   );
-
+  var x = jsonDecode(response.body);
   if (response.statusCode == 200) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     // id=""->,otp from email,email
-    var x = jsonDecode(response.body);
     print("key:" + x.toString());
     return x['verification_key'];
     // return Album.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
-    throw Exception('Failed to get OTP.');
+    print("key:" + x.toString());
+    return ('Failed to get OTP.');
   }
 }

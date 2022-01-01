@@ -54,7 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 )
               : null,
         ),
-        obscureText: widget.isPasswordField,
+        obscureText: widget.isPasswordField && icon == CupertinoIcons.eye_fill,
       ),
     );
   }

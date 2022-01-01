@@ -189,6 +189,7 @@ class _HomeBodyState extends State<HomeBody> {
                         ),
                       ),
                       TextField(
+                        controller: mController,
                         cursorColor: Colors.white,
                         style: GoogleFonts.oswald(color: Colors.white),
                         decoration: InputDecoration(
