@@ -23,6 +23,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool emailCheck = false, psdCheck = false;
   Color? color;
   @override
   Widget build(BuildContext context) {
@@ -35,17 +36,33 @@ class _SignInState extends State<SignIn> {
           color: color,
         ),
         CustomTextField(
-          controller: emailController,
-          isPasswordField: false,
-        ),
+            controller: emailController,
+            isPasswordField: false,
+            update: (s) {
+              setState(() {
+                setState(() {
+                  if (s != '')
+                    emailCheck = true;
+                  else
+                    emailCheck = false;
+                });
+              });
+            }),
         SizedBox(
           height: 20,
         ),
         label(icon: CupertinoIcons.lock, color: color, text: 'Password'),
         CustomTextField(
-          controller: passwordController,
-          isPasswordField: true,
-        ),
+            controller: passwordController,
+            isPasswordField: true,
+            update: (s) {
+              setState(() {
+                if (s != '')
+                  psdCheck = true;
+                else
+                  psdCheck = false;
+              });
+            }),
         Align(
           alignment: Alignment.centerRight,
           child: Container(
@@ -59,6 +76,7 @@ class _SignInState extends State<SignIn> {
         CustomButton(
           icon: Icons.arrow_forward,
           text: 'Sign in',
+          enable: psdCheck && emailCheck,
           onTap: () async {
             await loginUser(emailController.text, passwordController.text)
                 .then((value) {

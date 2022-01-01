@@ -5,10 +5,12 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   bool isPasswordField;
   double? height;
+  Function(String)? update;
   CustomTextField({
     required this.controller,
     required this.isPasswordField,
     this.height,
+    this.update,
     Key? key,
   }) : super(key: key);
 
@@ -24,6 +26,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Container(
       alignment: Alignment.center,
       child: TextField(
+        onChanged: widget.update != null ? widget.update : (s) {},
         textAlignVertical: TextAlignVertical.center,
         style: TextStyle(
             color: Colors.white,

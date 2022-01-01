@@ -27,6 +27,13 @@ class _SignUpState extends State<SignUp> {
   String id = "";
   bool IsVerify = false;
   Color? color;
+  bool emailCheck = false,
+      psdCheck = false,
+      otpCheck = false,
+      fnameCheck = false,
+      lnameCheck = false,
+      unameCheck = false;
+
   @override
   Widget build(BuildContext context) {
     return IsVerify == true
@@ -52,6 +59,14 @@ class _SignUpState extends State<SignUp> {
                           child: CustomTextField(
                             controller: fnameController,
                             isPasswordField: false,
+                            update: (s) {
+                              setState(() {
+                                if (s != '')
+                                  fnameCheck = true;
+                                else
+                                  fnameCheck = false;
+                              });
+                            },
                           ),
                         ),
                       ],
@@ -72,6 +87,14 @@ class _SignUpState extends State<SignUp> {
                           width: MediaQuery.of(context).size.width * 0.5 - 20,
                           child: CustomTextField(
                             controller: lnameController,
+                            update: (s) {
+                              setState(() {
+                                if (s != '')
+                                  lnameCheck = true;
+                                else
+                                  lnameCheck = false;
+                              });
+                            },
                             isPasswordField: false,
                           ),
                         ),
@@ -88,6 +111,14 @@ class _SignUpState extends State<SignUp> {
                 CustomTextField(
                   controller: usernameController,
                   isPasswordField: false,
+                  update: (s) {
+                    setState(() {
+                      if (s != '')
+                        unameCheck = true;
+                      else
+                        unameCheck = false;
+                    });
+                  },
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 5),
@@ -98,11 +129,20 @@ class _SignUpState extends State<SignUp> {
                 CustomTextField(
                   controller: passwordController,
                   isPasswordField: false,
+                  update: (s) {
+                    setState(() {
+                      if (s != '')
+                        psdCheck = true;
+                      else
+                        psdCheck = false;
+                    });
+                  },
                 ),
                 Container(
                   // margin: EdgeInsets.symmetric(vertical: 20),
                   child: CustomButton(
                     text: "Sign up",
+                    enable: fnameCheck && lnameCheck && unameCheck && psdCheck,
                     onTap: () async {
                       await createUser(
                               fnameController.text,
@@ -141,6 +181,14 @@ class _SignUpState extends State<SignUp> {
                 CustomTextField(
                   controller: emailController,
                   isPasswordField: false,
+                  update: (s) {
+                    setState(() {
+                      if (s != '')
+                        emailCheck = true;
+                      else
+                        emailCheck = false;
+                    });
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -148,6 +196,7 @@ class _SignUpState extends State<SignUp> {
                 CustomButton(
                   icon: Icons.arrow_forward,
                   text: 'Get OTP',
+                  enable: emailCheck,
                   onTap: () async {
                     await getOTP(emailController.text).then((value) {
                       print("here:" + value);
@@ -166,6 +215,14 @@ class _SignUpState extends State<SignUp> {
                 CustomTextField(
                   controller: otpController,
                   isPasswordField: false,
+                  update: (s) {
+                    setState(() {
+                      if (otpController.text != '')
+                        otpCheck = true;
+                      else
+                        otpCheck = false;
+                    });
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -173,6 +230,7 @@ class _SignUpState extends State<SignUp> {
                 CustomButton(
                   icon: Icons.arrow_forward,
                   text: 'Verify',
+                  enable: otpCheck,
                   onTap: () async {
                     await emailVerify(emailController.text, otpController.text,
                             id.toString())

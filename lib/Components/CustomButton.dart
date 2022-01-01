@@ -6,10 +6,12 @@ class CustomButton extends StatelessWidget {
   final String text;
   final IconData? icon;
   final Function()? onTap;
-  const CustomButton({
+  bool? enable;
+  CustomButton({
     Key? key,
     required this.text,
     this.icon,
+    this.enable,
     required this.onTap,
   }) : super(key: key);
 
@@ -65,11 +67,13 @@ class CustomButton extends StatelessWidget {
       ),
       borderRadius: 18,
       height: 50,
-      color: Color(0xffEB532B),
+      color: enable != null && enable == true
+          ? Color(0xffEB532B)
+          : Color(0xffEF7555),
       loadingWidget: CircularProgressIndicator(
         color: Colors.white,
       ),
-      onPressed: onTap,
+      onPressed: enable != null && enable == true ? onTap : () {},
     );
   }
 }
