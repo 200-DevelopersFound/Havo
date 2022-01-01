@@ -78,6 +78,7 @@ class _SignInState extends State<SignIn> {
           text: 'Sign in',
           enable: psdCheck && emailCheck,
           onTap: () async {
+            print(passwordController.text);
             await loginUser(emailController.text, passwordController.text)
                 .then((value) {
               if (value != "error") {

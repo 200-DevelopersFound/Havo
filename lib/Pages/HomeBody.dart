@@ -37,6 +37,7 @@ class _HomeBodyState extends State<HomeBody> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
