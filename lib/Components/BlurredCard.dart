@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
 
 class BlurredCard extends StatefulWidget {
@@ -32,10 +33,11 @@ class _BlurredCardState extends State<BlurredCard> {
           width: 275,
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [orange, Colors.pink])),
+              // gradient: LinearGradient(
+              //     begin: Alignment.topCenter,
+              //     end: Alignment.bottomCenter,
+              //     colors: [orange, Colors.pink]),
+              color: orange),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -48,10 +50,10 @@ class _BlurredCardState extends State<BlurredCard> {
                 children: [
                   Text(
                     widget.heading,
-                    style: TextStyle(
+                    style: GoogleFonts.oswald(
                         fontSize: 28,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.w500),
                   ),
                   Icon(
                     widget.icon,
@@ -65,10 +67,10 @@ class _BlurredCardState extends State<BlurredCard> {
               ),
               Text(
                 widget.subheading,
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: GoogleFonts.oswald(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

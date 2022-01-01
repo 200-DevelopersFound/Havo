@@ -18,6 +18,7 @@ class login extends StatefulWidget {
 class _loginState extends State<login> with SingleTickerProviderStateMixin {
   late TabController tabController;
   int tabCheck = 0;
+  bool emailCheck = false, psdCheck = false, otpcheck = false;
   @override
   void initState() {
     tabController = new TabController(vsync: this, length: 2, initialIndex: 0);
