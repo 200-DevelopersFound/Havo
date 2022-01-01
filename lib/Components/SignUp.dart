@@ -128,7 +128,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 CustomTextField(
                   controller: passwordController,
-                  isPasswordField: false,
+                  isPasswordField: true,
                   update: (s) {
                     setState(() {
                       if (s != '')
