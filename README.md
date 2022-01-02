@@ -1,4 +1,4 @@
-<p align="center"><img src="./screenshots/0.png" width=300  align="center"></p>
+<p align="center"><img src="./screenshots/0.png" width=200  align="center"></p>
 <h1 align="center">Havo</h1>
 <p align="center"><img align="center" src="https://api.travis-ci.com/travis-ci/travis-web.svg" alt="build:passed"></p>
 
@@ -56,7 +56,7 @@ This applcation uses Express server hosted at Heroku
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/200-DevelopersFound/Handwriter.git
+https://github.com/200-DevelopersFound/Havo.git
 ```
 
 **Step 2:**
