@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:havo/constants/api.dart';
 import 'package:http/http.dart' as http;
-import 'package:learning_digital_ink_recognition_example/constants/api.dart';
 
 Future<String> getOTP(String email) async {
   final response = await http.post(

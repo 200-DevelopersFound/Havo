@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
+import 'package:havo/constants/colors.dart';
 
 class BlurredCard extends StatefulWidget {
   String heading, subheading;

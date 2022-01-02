@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/setting.dart';
-import 'package:learning_digital_ink_recognition_example/tts.dart';
 
-import 'Home.dart';
-import 'login.dart';
+import 'Api/CategoryApi.dart';
+import 'Pages/login.dart';
+import 'tts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

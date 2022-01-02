@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:learning_digital_ink_recognition_example/constants/api.dart';
+import 'package:havo/constants/api.dart';
+import 'package:havo/model/User.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:learning_digital_ink_recognition_example/model/User.dart';
 
 Future<bool> logout() async {
   final response = await http.delete(

@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
-import 'package:learning_digital_ink_recognition_example/Components/BlurredCard.dart';
-import 'package:learning_digital_ink_recognition_example/Components/Ink.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
+import 'package:havo/Api/CategoryApi.dart';
+import 'package:havo/Components/BlurredCard.dart';
+import 'package:havo/Components/Ink.dart';
+import 'package:havo/Pages/savedCategory.dart';
+import 'package:havo/constants/colors.dart';
 import 'package:progress_loading_button/progress_loading_button.dart';
 import 'package:provider/provider.dart';
 

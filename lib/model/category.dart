@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
+import 'package:havo/Api/CategoryApi.dart';
 
 class Category {
   String id, title;

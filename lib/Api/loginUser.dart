@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:havo/model/User.dart';
 import 'package:http/http.dart' as http;
-import 'package:learning_digital_ink_recognition_example/constants/api.dart';
-import 'package:learning_digital_ink_recognition_example/model/User.dart';
+import 'package:havo/constants/api.dart';
 
 Future<String> loginUser(String email, String password) async {
   final response = await http.post(

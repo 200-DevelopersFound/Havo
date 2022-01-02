@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
-import 'package:learning_digital_ink_recognition_example/model/drawer.dart';
+import 'package:havo/constants/colors.dart';
+import 'package:havo/model/drawer.dart';
 import 'package:progress_loading_button/progress_loading_button.dart';
 
 class ColorPicker extends StatefulWidget {

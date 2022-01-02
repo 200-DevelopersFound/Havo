@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learning_digital_ink_recognition_example/Components/SignUp.dart';
+import 'package:havo/Components/SignUp.dart';
 
 import '../Components/SignIn.dart';
 import '../constants/colors.dart';
@@ -20,7 +20,7 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
   int tabCheck = 0;
   @override
   void initState() {
-    tabController = new TabController(vsync: this, length: 2, initialIndex: 0);
+    tabController = TabController(vsync: this, length: 2, initialIndex: 0);
     print("here1:" + tabController.indexIsChanging.toString());
     tabController.animation?.addListener(() {
       if (tabController.indexIsChanging) {
@@ -28,16 +28,17 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
           tabCheck = tabController.index;
           print("changing");
         });
-      } else if (tabController.offset > 0.5)
+      } else if (tabController.offset > 0.5) {
         setState(() {
           print("1called");
           tabCheck = 1;
         });
-      else if (tabController.offset < -0.5)
+      } else if (tabController.offset < -0.5) {
         setState(() {
           print("0called");
           tabCheck = 0;
         });
+      }
     });
     super.initState();
   }
@@ -80,7 +81,7 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
                     style: GoogleFonts.pacifico(fontSize: 40, color: orange),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Container(
@@ -88,7 +89,7 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Color(0xff1B2127),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(40),
@@ -98,7 +99,7 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
                       children: [
                         Container(
                           height: 60,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(color: Colors.white))),
                           child: TabBar(
@@ -119,7 +120,7 @@ class _loginState extends State<login> with SingleTickerProviderStateMixin {
                                       : Radius.zero,
                                 ),
                               ),
-                              tabs: [
+                              tabs: const [
                                 Tab(
                                   child: Text(
                                     'Sign in',

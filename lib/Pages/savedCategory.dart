@@ -1,13 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
-import 'package:learning_digital_ink_recognition_example/Components/CustomDialog.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/CategoryStringPage.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/main.dart';
-import 'package:learning_digital_ink_recognition_example/model/category.dart';
+import 'package:havo/Api/CategoryApi.dart';
+import 'package:havo/Components/CustomDialog.dart';
+import 'package:havo/model/category.dart';
 
 import '../constants/colors.dart';
+import 'CategoryStringPage.dart';
 
 class SavedCategoryPage extends StatefulWidget {
   const SavedCategoryPage({Key? key}) : super(key: key);

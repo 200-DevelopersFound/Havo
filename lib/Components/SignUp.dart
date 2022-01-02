@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CreateUser.dart';
-import 'package:learning_digital_ink_recognition_example/Api/EmailOtp.dart';
-import 'package:learning_digital_ink_recognition_example/Api/EmailVerify.dart';
-import 'package:learning_digital_ink_recognition_example/model/User.dart';
-import 'package:learning_digital_ink_recognition_example/Components/CustomTextField.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
-
+import 'package:havo/Api/CreateUser.dart';
+import 'package:havo/Api/EmailOtp.dart';
+import 'package:havo/Api/EmailVerify.dart';
+import 'package:havo/Pages/Home.dart';
+import 'package:havo/model/User.dart';
 import 'CustomButton.dart';
+import 'CustomTextField.dart';
 import 'label.dart';
 
 class SignUp extends StatefulWidget {
@@ -128,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 CustomTextField(
                   controller: passwordController,
-                  isPasswordField: true,
+                  isPasswordField: false,
                   update: (s) {
                     setState(() {
                       if (s != '')

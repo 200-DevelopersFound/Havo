@@ -2,18 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/savedCategory.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/setting.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
-import 'package:progress_loading_button/progress_loading_button.dart';
-import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../Components/BlurredCard.dart';
-import '../Components/Ink.dart';
+import 'package:havo/Pages/savedCategory.dart';
+import 'package:havo/constants/colors.dart';
 import 'HomeBody.dart';
+import 'setting.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

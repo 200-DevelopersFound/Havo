@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:havo/constants/api.dart';
+import 'package:havo/model/User.dart';
+import 'package:havo/model/category.dart';
 import 'package:http/http.dart' as http;
-import 'package:learning_digital_ink_recognition_example/constants/api.dart';
-import 'package:learning_digital_ink_recognition_example/model/User.dart';
-import 'package:learning_digital_ink_recognition_example/model/category.dart';
 
 class CategoryApi {
   static late List<Category> categoryList;

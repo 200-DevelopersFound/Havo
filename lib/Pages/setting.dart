@@ -4,13 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:havo/Api/logout.dart';
+import 'package:havo/Components/ColorPicker.dart';
+import 'package:havo/constants/colors.dart';
+import 'package:havo/model/User.dart';
+import 'package:havo/model/drawer.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:learning_digital_ink_recognition_example/Api/logout.dart';
-import 'package:learning_digital_ink_recognition_example/Components/ColorPicker.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/login.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
-import 'package:learning_digital_ink_recognition_example/model/User.dart';
-import 'package:learning_digital_ink_recognition_example/model/drawer.dart';
+
+import 'login.dart';
 
 class settingPage extends StatefulWidget {
   const settingPage({Key? key}) : super(key: key);

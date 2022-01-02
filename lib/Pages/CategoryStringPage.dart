@@ -1,14 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
-import 'package:learning_digital_ink_recognition_example/Components/CustomDialog.dart';
-import 'package:learning_digital_ink_recognition_example/Components/PlayingString.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
-import 'package:learning_digital_ink_recognition_example/model/category.dart';
-import 'package:learning_digital_ink_recognition_example/tts.dart';
+import 'package:havo/Api/CategoryApi.dart';
+import 'package:havo/Components/CustomDialog.dart';
+import 'package:havo/Components/PlayingString.dart';
+import 'package:havo/constants/colors.dart';
+import 'package:havo/model/category.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'main.dart';
 
 class CategoryStringPage extends StatefulWidget {
   final int idx;

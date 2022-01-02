@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:havo/constants/api.dart';
 import 'package:http/http.dart' as http;
-import 'package:learning_digital_ink_recognition_example/constants/api.dart';
 
 Future<String> createUser(String fname, String lname, String username,
     String email, String password) async {

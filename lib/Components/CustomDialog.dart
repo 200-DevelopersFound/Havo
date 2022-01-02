@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_digital_ink_recognition_example/Api/CategoryApi.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
+import 'package:havo/Api/CategoryApi.dart';
 import 'package:progress_loading_button/progress_loading_button.dart';
 
 import 'CustomTextField.dart';
@@ -75,35 +74,35 @@ class _CustomDialogState extends State<CustomDialog> {
                       decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(10)),
-                      child: Text(
+                      child: const Text(
                         'Add',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                     onPressed: () async {
-                      if (widget.onTap == 1)
+                      if (widget.onTap == 1) {
                         await CategoryApi.addCategory(mController.text)
                             .then((value) async {
                           if (value == true) {
-                            print('true');
                             await CategoryApi.getCategory();
                             Navigator.of(context).pop();
                           } else
                             print('false');
                         });
-                      if (widget.onTap == 2)
+                      }
+                      if (widget.onTap == 2) {
                         await CategoryApi.updateCategory(
                                 mController.text, widget.id!)
                             .then((value) async {
                           if (value == true) {
-                            print('true');
                             await CategoryApi.getCategory();
                             Navigator.of(context).pop();
                           } else
                             print('false');
                         });
+                      }
                     }),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 GestureDetector(
@@ -111,11 +110,12 @@ class _CustomDialogState extends State<CustomDialog> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                     decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(10)),
-                    child: Text(
+                    child: const Text(
                       'Cancel',
                       style: TextStyle(color: Colors.white),
                     ),

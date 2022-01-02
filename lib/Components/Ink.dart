@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:havo/Utility/painter.dart';
+import 'package:havo/constants/colors.dart';
+import 'package:havo/model/drawer.dart';
 import 'package:learning_digital_ink_recognition/learning_digital_ink_recognition.dart';
-import 'package:learning_digital_ink_recognition_example/Utility/painter.dart';
-import 'package:learning_digital_ink_recognition_example/constants/colors.dart';
-import 'package:learning_digital_ink_recognition_example/model/drawer.dart';
-import 'package:learning_digital_ink_recognition_example/tts.dart';
 import 'package:provider/provider.dart';
+import '../tts.dart';
 
 class DigitalInkRecognitionPage2 extends StatefulWidget {
   @override

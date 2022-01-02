@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_digital_ink_recognition_example/model/User.dart';
-import 'package:learning_digital_ink_recognition_example/Api/loginUser.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/Home.dart';
-import 'package:learning_digital_ink_recognition_example/Pages/login.dart';
+import 'package:havo/Api/loginUser.dart';
+import 'package:havo/Pages/Home.dart';
+import 'package:havo/model/User.dart';
 import 'package:provider/provider.dart';
 
 import 'CustomButton.dart';
