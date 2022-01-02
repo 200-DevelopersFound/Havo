@@ -8,15 +8,15 @@ A mobile application used to convert handwriting to speech via Machine Learning.
 
 ### APK
 
-[⬇️ Download apk here](https://github.com/200-DevelopersFound/Handwriter/blob/main/Apk/app.apk?raw=true)
+[⬇️ Download apk here](https://github.com/200-DevelopersFound/Havo/blob/main/apk/app.apk?raw=true)
 
 ### Backend API
 
 This applcation uses Express server hosted at Heroku
 
-[🔥 Live Version](https://handwritingbackend.herokuapp.com)
+[🔥 Live Version](https://havobackend.herokuapp.com)
 
-[:star: Github Repository](https://github.com/200-DevelopersFound/Handwriter-Backend)
+[:star: Github Repository](https://github.com/200-DevelopersFound/Havo-Backend)
 
 ## Some Features
 
@@ -100,4 +100,4 @@ This project is uses
 
 ## Facing Any Problem or need any Help:grey_question:
 
-Incase you face any problem or need any help write me in [issues](https://github.com/200-DevelopersFound/Handwriter/issues) section.
+Incase you face any problem or need any help write me in [issues](https://github.com/200-DevelopersFound/Havo/issues) section.
