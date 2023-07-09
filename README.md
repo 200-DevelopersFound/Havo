@@ -4,7 +4,9 @@
 
 ## Getting Started
 
-A mobile application used to convert handwriting to speech via Machine Learning. It uses the same technology that powers handwriting recognition in Gboard, Google Translate, and the Quick, Draw! game. This application is for the people who are unable to speak, by helping them save their daily conversation in the form of phrases. It provides additional authentication feature to help the user secure their data and can be logged in from multiple devices<br>
+The mobile application serves a crucial purpose by leveraging Machine Learning technology to convert handwritten text into speech. This technology, also employed by popular platforms like Gboard, Google Translate, and the Quick, Draw! game, ensures accurate recognition of the user's handwriting. The application is specifically designed for individuals who are unable to speak, allowing them to save their daily conversations as phrases.
+
+In addition to its core functionality, the application offers an authentication feature to enhance data security. Users can register and log in to their accounts, providing an extra layer of protection for their stored data. Furthermore, the application supports multiple device logins, enabling users to access their account and phrases from different devices seamlessly. This flexibility and convenience cater to the needs of individuals who rely on the application as an essential part of their communication process.<br>
 
 ### APK
 
